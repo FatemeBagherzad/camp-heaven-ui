@@ -5,7 +5,10 @@ import catchAsync from './../utils/catchAsync.js';
 import AppError from './../utils/appError.js';
 import Email from './../utils/email.js';
 import bcrypt from 'bcryptjs';
+import uniqid from 'uniqid';
+import dotenv from 'dotenv';
 
+dotenv.config();
 import initKnex from 'knex';
 import configuration from '../knexfile.js';
 const knex = initKnex(configuration);
@@ -18,10 +21,20 @@ const signToken = (id) => {
 
 const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user.id);
-
+  const cookieExpiresIn = process.env.JWT_COOKIE_EXPIRES_IN;
+  if (!cookieExpiresIn) {
+    throw new Error('Invalid JWT_COOKIE_EXPIRES_IN value. It must be defined.');
+  }
+  const daysMatch = cookieExpiresIn.match(/(\d+)d/);
+  if (!daysMatch) {
+    throw new Error(
+      'Invalid JWT_COOKIE_EXPIRES_IN format. It must be in the form of "90d".'
+    );
+  }
+  const days = Number(daysMatch[1]);
   const cookieOptions = {
     expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      Date.now() + days * 24 * 60 * 60 * 1000 // Convert to milliseconds
     ),
     httpOnly: true,
     sameSite: 'lax',
@@ -31,7 +44,6 @@ const createSendToken = (user, statusCode, req, res) => {
   res.cookie('jwt', token, cookieOptions);
 
   user.password = undefined;
-
   res.status(statusCode).json({
     status: 'success',
     token,
@@ -44,25 +56,29 @@ const createSendToken = (user, statusCode, req, res) => {
 const signup = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm } = req.body;
   if (password !== passwordConfirm) {
-    return res.status(400).json({ message: 'Passwords do not match' });
+    return next(new AppError('Passwords do not match', 400));
   }
 
   try {
     const existingUser = await knex('users').where({ email }).first();
+
     if (existingUser) {
-      return res.status(400).json({ message: 'Email already exists' });
+      return next(new AppError('Email already exists', 400));
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     await knex('users').insert({
+      id: uniqid(),
       name,
+      role: 'user',
       email,
       password: hashedPassword,
     });
+    const newUser = await knex('users').where({ email }).first();
+
     createSendToken(newUser, 201, req, res);
-    res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error registering user' });
+    return next(new AppError('Error registering user', 500));
   }
 });
 
@@ -101,7 +117,7 @@ const protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.replace('Bearer ', '');
-  } else if (req.cookies.jwt) {
+  } else if (req.cookies && req.cookies.jwt) {
     token = req.cookies.jwt;
   }
 
@@ -113,7 +129,7 @@ const protect = catchAsync(async (req, res, next) => {
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-  const currentUser = await User.findById(decoded.id);
+  const currentUser = await knex('users').where({ id: decoded.id }).first();
   if (!currentUser) {
     return next(
       new AppError(
@@ -130,22 +146,26 @@ const protect = catchAsync(async (req, res, next) => {
 
 // Only for rendered pages, no errors!
 const isLoggedIn = async (req, res, next) => {
-  if (req.cookies.jwt) {
+  if (req.cookies && req.cookies.jwt) {
     try {
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
         process.env.JWT_SECRET
       );
 
-      const currentUser = await User.findById(decoded.id);
+      const currentUser = await knex('users').where({ id: decoded.id }).first();
       if (!currentUser) {
         return next();
       }
-
-      if (currentUser.changedPasswordAfter(decoded.iat)) {
+      // 4) Check if user changed password after the token was issued
+      // Assuming you have a `passwordChangedAt` field in your `users` table:
+      const changedTimestamp =
+        new Date(currentUser.passwordChangedAt).getTime() / 1000;
+      if (decoded.iat < changedTimestamp) {
         return next();
       }
 
+      // 5) There is a logged-in user, make the user data available in `res.locals`
       res.locals.user = currentUser;
       return next();
     } catch (err) {
@@ -167,15 +187,29 @@ const restrictTo = (...roles) => {
   };
 };
 
+//⛔⛔⛔I have to add necessary fields to database and also add route for it
 const forgotPassword = catchAsync(async (req, res, next) => {
-  const user = await User.findOne({ email: req.body.email });
+  const user = await knex('users').where({ email: req.body.email }).first();
   if (!user) {
-    return next(new AppError('There is no user with email address.', 404));
+    return next(new AppError('There is no user with that email address.', 404));
   }
 
-  const resetToken = user.createPasswordResetToken();
-  await user.save({ validateBeforeSave: false });
+  // Generate the random reset token and update the user's reset fields
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  const passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  const passwordResetExpires = Date.now() + 10 * 60 * 1000;
 
+  await knex('users')
+    .where({ email: req.body.email })
+    .update({
+      password_reset_token: passwordResetToken,
+      password_reset_expires: new Date(passwordResetExpires),
+    });
+
+  //Send it to user's email
   try {
     const resetURL = `${req.protocol}://${req.get(
       'host'
@@ -187,9 +221,11 @@ const forgotPassword = catchAsync(async (req, res, next) => {
       message: 'Token sent to email!',
     });
   } catch (err) {
-    user.passwordResetToken = undefined;
-    user.passwordResetExpires = undefined;
-    await user.save({ validateBeforeSave: false });
+    // In case of an error, clear the reset fields in the database
+    await knex('users').where({ email: req.body.email }).update({
+      password_reset_token: null,
+      password_reset_expires: null,
+    });
 
     return next(
       new AppError('There was an error sending the email. Try again later!'),
@@ -204,35 +240,58 @@ const resetPassword = catchAsync(async (req, res, next) => {
     .update(req.params.token)
     .digest('hex');
 
-  const user = await User.findOne({
-    passwordResetToken: hashedToken,
-    passwordResetExpires: { $gt: Date.now() },
-  });
+  // Find user with this hashed token and ensure the token has not expired
+  const user = await knex('users')
+    .where({
+      password_reset_token: hashedToken,
+    })
+    .andWhere('password_reset_expires', '>', new Date()) // Check that the token has not expired
+    .first();
 
+  // If the token is invalid or has expired, return an error
   if (!user) {
     return next(new AppError('Token is invalid or has expired', 400));
   }
-  user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
-  user.passwordResetToken = undefined;
-  user.passwordResetExpires = undefined;
-  await user.save();
 
-  createSendToken(user, 200, req, res);
+  //  Update user's password and remove reset fields
+  await knex('users').where({ id: user.id }).update({
+    password: req.body.password, // Ensure to hash this password before storing it in your real app
+    password_confirm: req.body.passwordConfirm,
+    password_reset_token: null,
+    password_reset_expires: null,
+    password_changed_at: new Date(), // Optional: Track when the password was last changed
+  });
+
+  //  Retrieve the updated user to pass to the `createSendToken` function
+  const updatedUser = await knex('users').where({ id: user.id }).first();
+
+  // Send the JWT token back to the client
+  createSendToken(updatedUser, 200, req, res);
 });
 
 const updatePassword = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select('+password');
+  const user = await knex('users')
+    .where({ id: req.user.id })
+    .select('password')
+    .first();
 
-  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
-    return next(new AppError('Your current password is wrong.', 401));
+  if (
+    !user ||
+    !(await bcrypt.compare(req.body.passwordCurrent, user.password))
+  ) {
+    return next(new AppError('Your current password is incorrect.', 401));
   }
 
-  user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
-  await user.save();
+  const hashedPassword = await bcrypt.hash(req.body.password, 12);
+  await knex('users').where({ id: req.user.id }).update({
+    password: hashedPassword,
+    password_reset_token: null,
+    password_reset_expires: null,
+    password_changed_at: new Date(), // Optional: Track when the password was changed
+  });
 
-  createSendToken(user, 200, req, res);
+  const updatedUser = await knex('users').where({ id: req.user.id }).first();
+  createSendToken(updatedUser, 200, req, res);
 });
 
 export {

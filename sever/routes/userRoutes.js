@@ -7,7 +7,6 @@ const router = express.Router();
 
 //Get gear list for each user
 router.use('/:userId/gears', gearRouter);
-
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
@@ -28,7 +27,7 @@ router.patch(
 );
 router.delete('/deleteMe', userController.deleteMe);
 
-// router.use(authController.restrictTo('admin'));
+router.use(authController.restrictTo('admin'));
 
 router
   .route('/')
