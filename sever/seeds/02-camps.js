@@ -1,0 +1,268 @@
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+export async function seed(knex) {
+  await knex('camps').del();
+  await knex('camps').insert([
+    {
+      id: '5c88fa8cf4afda39709c2955',
+      name: 'Cedar Valley Resort',
+      lat: 43.992396499628136,
+      lng: -78.5291259161413,
+      address: '4739 Cedar Valley Rd, Orono, ON L0B 1M0',
+      ratingsAverage: 4.8,
+      ratingsQuantity: 6,
+      maxGroupSize: 15,
+      price: 497,
+      difficulty: 'medium',
+      summary: 'Exploring the jaw-dropping US east coast by foot and by boat',
+      description:
+        'Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      imageCover: 'Cedar-Valley-Resort-1.PNG',
+      images: JSON.stringify([
+        'Cedar-Valley-Resort-2.PNG',
+        'Cedar-Valley-Resort-3.PNG',
+        'Cedar-Valley-Resort-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c2951',
+      name: 'Sandaraska Park',
+      lat: 44.096592637962054,
+      lng: -78.57042257489593,
+      address: '156 Sandaraska Rd, Bethany, ON L0A 1A0',
+      ratingsAverage: 5,
+      ratingsQuantity: 9,
+      maxGroupSize: 25,
+      price: 397,
+      difficulty: 'medium',
+      summary: 'Breathtaking hike through the Canadian Banff National Park',
+      description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      imageCover: 'Sandaraska-Park-1.PNG',
+      images: JSON.stringify([
+        'Sandaraska-Park-2.PNG',
+        'Sandaraska-Park-3.PNG',
+        'Sandaraska-Park-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c295a',
+      name: 'Cedar Park Resort',
+      lat: 43.99081742999197,
+      lng: -78.7388666404861,
+      address: '6296 Cedar Park Rd, Bowmanville, ON L1C 3K2',
+      ratingsAverage: 4.5,
+      ratingsQuantity: 6,
+      maxGroupSize: 10,
+      price: 997,
+      difficulty: 'easy',
+      summary: 'Exciting adventure in the snow with snowboarding and skiing',
+      description:
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!',
+      imageCover: 'Cedar-Park-Resort-1.PNG',
+      images: JSON.stringify([
+        'Cedar-Park-Resort-2.PNG',
+        'Cedar-Park-Resort-3.PNG',
+        'Cedar-Park-Resort-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c2961',
+      name: 'Trout Water Family Camping Ltd',
+      lat: 44.295026676926426,
+      lng: -79.04286229275405,
+      address: 'S1600 Hwy 7 East, Sunderland, ON L0C 1H0',
+      ratingsAverage: 4.7,
+      ratingsQuantity: 7,
+      maxGroupSize: 15,
+      price: 1497,
+      difficulty: 'difficult',
+      summary:
+        "Breathing in Nature in America's most spectacular National Parks",
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!',
+      imageCover: 'Trout-Water-Family-Camping-Ltd-1.PNG',
+      images: JSON.stringify([
+        'Trout-Water-Family-Camping-Ltd-2.PNG',
+        'Trout-Water-Family-Camping-Ltd-3.PNG',
+        'Trout-Water-Family-Camping-Ltd-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c295d',
+      name: 'Grangeways RV Park & Family Campground',
+      lat: 44.14191124322096,
+      lng: -79.24169097116388,
+      address: '9700 3rd Concession, Sandford, ON L0C 1E0',
+      ratingsAverage: 4.6,
+      ratingsQuantity: 5,
+      maxGroupSize: 20,
+      price: 1197,
+      difficulty: 'difficult',
+      summary: "Living the life of Wanderlust in the US' most beatiful cities",
+      description:
+        'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem ipsum dolor sit amet.\nConsectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat!',
+      imageCover: 'Grangeways-RV-Park-&-Family-Campground-1.PNG',
+      images: JSON.stringify([
+        'Grangeways-RV-Park-&-Family-Campground-2.PNG',
+        'Grangeways-RV-Park-&-Family-Campground-3.PNG',
+        'Grangeways-RV-Park-&-Family-Campground-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c2966',
+      name: 'Cedar Beach Resort',
+      lat: 44.03514981452528,
+      lng: -79.27163349329868,
+      address: '15014 Ninth Line, Whitchurch-Stouffville, ON L4A 7X3',
+      ratingsAverage: 3.9,
+      ratingsQuantity: 7,
+      maxGroupSize: 8,
+      price: 2997,
+      difficulty: 'difficult',
+      summary:
+        'Surfing, skating, parajumping, rock climbing and more, all in one tour',
+      description:
+        'Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nVoluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur!',
+      imageCover: 'Cedar-Beach-Resort-3.PNG',
+      images: JSON.stringify([
+        'Cedar-Beach-Resort-2.PNG',
+        'Cedar-Beach-Resort-1.PNG',
+        'Cedar-Beach-Resort-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c2970',
+      name: 'Bare Oaks Family Naturist Park',
+      lat: 44.14767834569923,
+      lng: -79.37456836418728,
+      address: '20237 Kennedy Rd, Sharon, ON L0G 1V0',
+      ratingsAverage: 4.8,
+      ratingsQuantity: 6,
+      maxGroupSize: 8,
+      price: 2997,
+      difficulty: 'easy',
+      summary:
+        'The most remote and stunningly beautiful places for seeing the night sky',
+      description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      imageCover: 'Bare-Oaks-Family-Naturist-Park-3.PNG',
+      images: JSON.stringify([
+        'Bare-Oaks-Family-Naturist-Park-2.PNG',
+        'Bare-Oaks-Family-Naturist-Park-1.PNG',
+        'Bare-Oaks-Family-Naturist-Park-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c2974',
+      name: 'Elm Grove Trailer Park/Family Campground',
+      lat: 44.28107845779203,
+      lng: -79.37140848422322,
+      address: '439 Catering Rd, Sutton West, ON L0E 1R0',
+      ratingsAverage: 4.7,
+      ratingsQuantity: 7,
+      maxGroupSize: 12,
+      price: 1497,
+      difficulty: 'medium',
+      summary:
+        'Enjoy the Northern Lights in one of the best places in the world',
+      description:
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!',
+      imageCover: 'Elm-Grove-Trailer-ParkFamily-campground-3.PNG',
+      images: JSON.stringify([
+        'Elm-Grove-Trailer-ParkFamily-campground-2.PNG',
+        'Elm-Grove-Trailer-ParkFamily-campground-1.PNG',
+        'Elm-Grove-Trailer-ParkFamily-campground-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c296c',
+      name: 'Credivale RV Park Ltd',
+      lat: 43.73740111939802,
+      lng: -79.92545061313446,
+      address: '14158 Mississauga Rd, Cheltenham, ON L7C 1W5',
+      ratingsAverage: 4.4,
+      ratingsQuantity: 7,
+      maxGroupSize: 8,
+      price: 1997,
+      difficulty: 'medium',
+      summary:
+        'Exquisite wines, scenic views, exclusive barrel tastings,  and much more',
+      description:
+        'Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      imageCover: 'Credivale-RV-Park-Ltd-3.PNG',
+      images: JSON.stringify([
+        'Credivale-RV-Park-Ltd-2.PNG',
+        'Credivale-RV-Park-Ltd-1.PNG',
+        'Credivale-RV-Park-Ltd-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c296f',
+      name: 'Rainbow Ridge Resort',
+      lat: 43.87971032766,
+      lng: -80.27874375071494,
+      address: '203138 Dufferin Rd 109, Grand Valley, ON L0N 1G0',
+      ratingsAverage: 4.3,
+      ratingsQuantity: 4,
+      maxGroupSize: 6,
+      price: 1197,
+      difficulty: 'medium',
+      summary:
+        'Enjoy the Northern Lights in one of the best places in the world',
+      description:
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!',
+      imageCover: 'Rainbow-Ridge-Resort-3.PNG',
+      images: JSON.stringify([
+        'Rainbow-Ridge-Resort-2.PNG',
+        'Rainbow-Ridge-Resort-1.PNG',
+        'Rainbow-Ridge-Resort-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c296e',
+      name: 'Harmony Resorts - Grand Valley',
+      lat: 43.954129723256514,
+      lng: -80.32860669881153,
+      address: '174366 Dufferin County Rd 25, Grand Valley, ON L0N 1G0',
+      ratingsAverage: 4.9,
+      ratingsQuantity: 9,
+      maxGroupSize: 9,
+      price: 1397,
+      difficulty: 'medium',
+      summary: 'Exploring the jaw-dropping US east coast by foot and by boat',
+      description:
+        'Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      imageCover: 'Harmony-Resorts-Grand Valley-3.PNG',
+      images: JSON.stringify([
+        'Harmony-Resorts-Grand Valley-2.PNG',
+        'Harmony-Resorts-Grand Valley-1.PNG',
+        'Harmony-Resorts-Grand Valley-4.PNG',
+      ]),
+    },
+    {
+      id: '5c88fa8cf4afda39709c296d',
+      name: 'Primrose Park',
+      lat: 44.087914256161675,
+      lng: -80.13760834232774,
+      address: '635687 ON-10, Mono, ON L9V 0Z8',
+      ratingsAverage: 4.5,
+      ratingsQuantity: 6,
+      maxGroupSize: 15,
+      price: 1297,
+      difficulty: 'easy',
+      summary:
+        'The most remote and stunningly beautiful places for seeing the night sky',
+      description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      imageCover: 'Primrose Park-3.PNG',
+      images: JSON.stringify([
+        'Primrose Park-1.PNG',
+        'Primrose Park-2.PNG',
+        'Primrose Park-4.PNG',
+      ]),
+    },
+  ]);
+}

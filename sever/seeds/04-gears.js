@@ -1,0 +1,280 @@
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+
+export async function seed(knex) {
+  await knex('gears').del();
+  await knex('gears').insert([
+    {
+      id: '6557ff76eaac020850152820',
+      name: 'Camping tent',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152821',
+      name: 'Sleeping bag',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152822',
+      name: 'Camping mat',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152823',
+      name: 'Pillow',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152824',
+      name: 'Camp chair',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152825',
+      name: 'Headlamp w/ batteries',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152826',
+      name: 'Lantern',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152827',
+      name: 'Camp table',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152828',
+      name: 'Sunshade',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac020850152829',
+      name: 'Sleeping bag liner',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac02085015282a',
+      name: 'Camping blanket',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac02085015282b',
+      name: 'Footprint/ground cloth',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac02085015282c',
+      name: 'Extra stakes',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac02085015282d',
+      name: 'Hammock',
+      have: 'no',
+      category: 'CAMPSITE & SLEEPING',
+    },
+    {
+      id: '6557ff76eaac02085015282e',
+      name: 'Camp stove & fuel',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac02085015282f',
+      name: 'Cooler w/ ice',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152830',
+      name: 'Cookware & utensils',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152831',
+      name: 'Food prep & dish-washing supplies',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152832',
+      name: 'Camp table',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152833',
+      name: 'Water jugs',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152834',
+      name: 'Tablecloth',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152835',
+      name: 'Portable coffee/tea maker',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152836',
+      name: 'Firewood',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152837',
+      name: 'Axe/hatchet',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152838',
+      name: 'Fire starter',
+      have: 'no',
+      category: 'CAMP KITCHEN',
+    },
+    {
+      id: '6557ff76eaac020850152839',
+      name: 'Baselayer',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac02085015283a',
+      name: 'Down/synthetic jacket',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac02085015283b',
+      name: 'Rain jacket',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac02085015283c',
+      name: 'Hiking pants/shorts',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac02085015283d',
+      name: 'Hiking boots/shoes',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac02085015283e',
+      name: 'Hiking socks',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac02085015283f',
+      name: 'Gloves',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac020850152840',
+      name: 'Beanie',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac020850152841',
+      name: 'Ball cap',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac020850152842',
+      name: 'Camp sandals or slippers',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac020850152843',
+      name: 'Swimsuit',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac020850152844',
+      name: 'Neck gaiter/buff',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac020850152845',
+      name: 'Long underwear',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac020850152846',
+      name: 'Sleepwear',
+      have: 'no',
+      category: 'CLOTHING & FOOTWEAR',
+    },
+    {
+      id: '6557ff76eaac020850152847',
+      name: 'Toiletries',
+      have: 'no',
+      category: 'HEALTH & HYGIENE',
+    },
+    {
+      id: '6557ff76eaac020850152848',
+      name: 'un & bug protection',
+      have: 'no',
+      category: 'HEALTH & HYGIENE',
+    },
+    {
+      id: '6557ff76eaac020850152849',
+      name: 'Trowel/portable toilet',
+      have: 'no',
+      category: 'HEALTH & HYGIENE',
+    },
+    {
+      id: '6557ff76eaac02085015284a',
+      name: 'Solar/portable shower',
+      have: 'no',
+      category: 'HEALTH & HYGIENE',
+    },
+    {
+      id: '6557ff76eaac02085015284b',
+      name: 'Baby wipes',
+      have: 'no',
+      category: 'HEALTH & HYGIENE',
+    },
+    {
+      id: '6557ff76eaac02085015284c',
+      name: 'Sun hat',
+      have: 'no',
+      category: 'HEALTH & HYGIENE',
+    },
+  ]);
+}
