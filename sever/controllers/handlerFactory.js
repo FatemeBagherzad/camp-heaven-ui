@@ -1,17 +1,22 @@
+import initKnex from 'knex';
+import configuration from '../knexfile.js';
 import catchAsync from './../utils/catchAsync.js';
 import AppError from './../utils/appError.js';
 import APIFeatures from './../utils/apiFeatures.js';
-import User from './../models/userModel.js';
-import path from 'path';
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
+const knex = initKnex(configuration);
 
-export const deleteOne = (Model) =>
+const deleteOne = (table) =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.findByIdAndDelete(req.params.id);
+    const [deletedDoc] = await knex(table)
+      .where({ id: req.params.id })
+      .del()
+      .returning('*');
 
-    if (!doc) {
+    if (!deletedDoc) {
       return next(new AppError('No document found with that ID', 404));
     }
 
@@ -21,40 +26,41 @@ export const deleteOne = (Model) =>
     });
   });
 
-export const updateOne = (Model) =>
+const updateOne = (table) =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const [updatedDoc] = await knex(table)
+      .where({ id: req.params.id })
+      .update(req.body)
+      .returning('*');
 
-    if (!doc) {
+    if (!updatedDoc) {
       return next(new AppError('No document found with that ID', 404));
     }
 
     const { userId, gearId, gearName } = req.body;
-    const user = await User.findById(userId);
-    user.userGears.push({ name: gearName, _id: gearId });
 
-    await User.findByIdAndUpdate(
-      userId,
-      { userGears: user.userGears },
-      { new: true, runValidators: true }
-    );
+    if (userId) {
+      const user = await knex('users').where({ id: userId }).first();
 
-    console.log('🟨🟨🟨', user);
+      if (user) {
+        user.userGears.push({ name: gearName, _id: gearId });
+        await knex('users')
+          .where({ id: userId })
+          .update({ userGears: JSON.stringify(user.userGears) });
+      }
+    }
 
     res.status(200).json({
       status: 'success',
       data: {
-        data: doc,
+        data: updatedDoc,
       },
     });
   });
 
-export const createOne = (Model) =>
+const createOne = (table) =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.create(req.body);
+    const [doc] = await knex(table).insert(req.body).returning('*');
 
     res.status(201).json({
       status: 'success',
@@ -64,14 +70,9 @@ export const createOne = (Model) =>
     });
   });
 
-export const getOne = (Model, popOptions) =>
+const getOne = (table, popOptions) =>
   catchAsync(async (req, res, next) => {
-    let query = Model.findById(req.params.id);
-
-    console.log('from get one in factory 👉👉👉👉👉👉👉👉👉', query);
-
-    if (popOptions) query = query.populate(popOptions);
-    const doc = await query;
+    const doc = await knex(table).where({ id: req.params.id }).first();
 
     if (!doc) {
       return next(new AppError('No document found with that ID', 404));
@@ -85,12 +86,12 @@ export const getOne = (Model, popOptions) =>
     });
   });
 
-export const getAll = (Model) =>
+const getAll = (table) =>
   catchAsync(async (req, res, next) => {
     let filter = {};
     if (req.params.campId) filter = { camp: req.params.campId };
 
-    const features = new APIFeatures(Model.find(filter), req.query)
+    const features = new APIFeatures(knex(table).where(filter), req.query)
       .filter()
       .sort();
 
@@ -98,10 +99,10 @@ export const getAll = (Model) =>
 
     doc.forEach((obj) => {
       if (obj.imageCover) {
-        let a = obj.imageCover;
-        let b = obj.images[0];
-        let c = obj.images[1];
-        let d = obj.images[2];
+        const a = obj.imageCover;
+        const b = obj.images[0];
+        const c = obj.images[1];
+        const d = obj.images[2];
 
         obj.imageCover = `${process.env.HOST_URL}/img/camps/${a}`;
         obj.images[0] = `${process.env.HOST_URL}/img/camps/${b}`;
@@ -119,3 +120,5 @@ export const getAll = (Model) =>
       },
     });
   });
+
+export { deleteOne, updateOne, createOne, getOne, getAll };

@@ -1,10 +1,12 @@
 import multer from 'multer';
 import sharp from 'sharp';
-import Camp from './../models/campModel.js';
+import initKnex from 'knex';
+import configuration from '../knexfile.js';
 import catchAsync from './../utils/catchAsync.js';
-import * as factory from './handlerFactory.js';
 import AppError from './../utils/appError.js';
+import * as factory from './handlerFactory.js';
 
+const knex = initKnex(configuration);
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
@@ -20,12 +22,12 @@ const upload = multer({
   fileFilter: multerFilter,
 });
 
-export const uploadCampImages = upload.fields([
+const uploadCampImages = upload.fields([
   { name: 'imageCover', maxCount: 1 },
   { name: 'images', maxCount: 3 },
 ]);
 
-export const resizeCampImages = catchAsync(async (req, res, next) => {
+const resizeCampImages = catchAsync(async (req, res, next) => {
   if (!req.files.imageCover || !req.files.images) return next();
 
   // 1) Cover image
@@ -56,39 +58,33 @@ export const resizeCampImages = catchAsync(async (req, res, next) => {
   next();
 });
 
-export const aliasTopCamps = (req, res, next) => {
+const aliasTopCamps = (req, res, next) => {
   req.query.limit = '5';
   req.query.sort = 'price';
   req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
   next();
 };
 
-export const getAllCamps = factory.getAll(Camp);
-export const getCamp = factory.getOne(Camp, { path: 'reviews' });
-export const createCamp = factory.createOne(Camp);
-export const updateCamp = factory.updateOne(Camp);
-export const deleteCamp = factory.deleteOne(Camp);
+const getAllCamps = factory.getAll('camps');
+const getCamp = factory.getOne('camps');
+const createCamp = factory.createOne('camps');
+const updateCamp = factory.updateOne('camps');
+const deleteCamp = factory.deleteOne('camps');
 
-export const getCampStats = catchAsync(async (req, res, next) => {
-  const stats = await Camp.aggregate([
-    {
-      $match: { ratingsAverage: { $gte: 4.5 } },
-    },
-    {
-      $group: {
-        _id: { $toUpper: '$difficulty' },
-        numCamps: { $sum: 1 },
-        numRatings: { $sum: '$ratingsQuantity' },
-        avgRating: { $avg: '$ratingsAverage' },
-        avgPrice: { $avg: '$price' },
-        minPrice: { $min: '$price' },
-        maxPrice: { $max: '$price' },
-      },
-    },
-    {
-      $sort: { avgPrice: 1 },
-    },
-  ]);
+const getCampStats = catchAsync(async (req, res, next) => {
+  const stats = await knex('camps')
+    .select(
+      'difficulty',
+      knex.raw('COUNT(*) as numCamps'),
+      knex.raw('SUM(ratingsQuantity) as numRatings'),
+      knex.raw('AVG(ratingsAverage) as avgRating'),
+      knex.raw('AVG(price) as avgPrice'),
+      knex.raw('MIN(price) as minPrice'),
+      knex.raw('MAX(price) as maxPrice')
+    )
+    .where('ratingsAverage', '>=', 4.5)
+    .groupBy('difficulty')
+    .orderBy('avgPrice', 'asc');
 
   res.status(200).json({
     status: 'success',
@@ -97,3 +93,15 @@ export const getCampStats = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+export {
+  uploadCampImages,
+  resizeCampImages,
+  aliasTopCamps,
+  getAllCamps,
+  getCamp,
+  createCamp,
+  updateCamp,
+  deleteCamp,
+  getCampStats,
+};

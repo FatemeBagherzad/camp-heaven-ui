@@ -1,8 +1,9 @@
 import express from 'express';
-import userController from './../controllers/userController.js';
-import authController from './../controllers/authController.js';
+import * as userController from './../controllers/userController.js';
+import * as authController from './../controllers/authController.js';
 import gearRouter from './../routes/gearRouter.js';
-import router from Router();
+
+const router = express.Router();
 
 //Get gear list for each user
 router.use('/:userId/gears', gearRouter);
@@ -23,7 +24,7 @@ router.patch(
   '/updateMe',
   userController.uploadUserPhoto,
   userController.resizeUserPhoto,
-  userController.updateMe,
+  userController.updateMe
 );
 router.delete('/deleteMe', userController.deleteMe);
 

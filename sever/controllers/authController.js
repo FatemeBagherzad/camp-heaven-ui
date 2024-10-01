@@ -1,10 +1,14 @@
 import crypto from 'crypto';
 import { promisify } from 'util';
 import jwt from 'jsonwebtoken';
-import User from './../models/userModel.js';
 import catchAsync from './../utils/catchAsync.js';
 import AppError from './../utils/appError.js';
 import Email from './../utils/email.js';
+import bcrypt from 'bcryptjs';
+
+import initKnex from 'knex';
+import configuration from '../knexfile.js';
+const knex = initKnex(configuration);
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -13,7 +17,7 @@ const signToken = (id) => {
 };
 
 const createSendToken = (user, statusCode, req, res) => {
-  const token = signToken(user._id);
+  const token = signToken(user.id);
 
   const cookieOptions = {
     expires: new Date(
@@ -24,7 +28,7 @@ const createSendToken = (user, statusCode, req, res) => {
   };
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
-  // res.cookie('jwt', token, cookieOptions);
+  res.cookie('jwt', token, cookieOptions);
 
   user.password = undefined;
 
@@ -37,33 +41,52 @@ const createSendToken = (user, statusCode, req, res) => {
   });
 };
 
-export const signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
-  });
-  console.log('📣New User: ', newUser);
-  createSendToken(newUser, 201, req, res);
+const signup = catchAsync(async (req, res, next) => {
+  const { name, email, password, passwordConfirm } = req.body;
+  if (password !== passwordConfirm) {
+    return res.status(400).json({ message: 'Passwords do not match' });
+  }
+
+  try {
+    const existingUser = await knex('users').where({ email }).first();
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already exists' });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await knex('users').insert({
+      name,
+      email,
+      password: hashedPassword,
+    });
+    createSendToken(newUser, 201, req, res);
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error registering user' });
+  }
 });
 
-export const login = catchAsync(async (req, res, next) => {
+const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return next(new AppError('Please provide email and password!', 400));
-  }
+  try {
+    const user = await knex('users').where({ email }).first();
 
-  const user = await User.findOne({ email }).select('password');
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError('Incorrect email or password', 401));
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+    createSendToken(user, 200, req, res);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error logging in' });
   }
-
-  createSendToken(user, 200, req, res);
 });
 
-export const logout = (req, res) => {
+const logout = (req, res) => {
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
@@ -71,7 +94,7 @@ export const logout = (req, res) => {
   res.status(200).json({ status: 'success' });
 };
 
-export const protect = catchAsync(async (req, res, next) => {
+const protect = catchAsync(async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
@@ -106,7 +129,7 @@ export const protect = catchAsync(async (req, res, next) => {
 });
 
 // Only for rendered pages, no errors!
-export const isLoggedIn = async (req, res, next) => {
+const isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
     try {
       const decoded = await promisify(jwt.verify)(
@@ -132,7 +155,7 @@ export const isLoggedIn = async (req, res, next) => {
   next();
 };
 
-export const restrictTo = (...roles) => {
+const restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(
@@ -144,7 +167,7 @@ export const restrictTo = (...roles) => {
   };
 };
 
-export const forgotPassword = catchAsync(async (req, res, next) => {
+const forgotPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
     return next(new AppError('There is no user with email address.', 404));
@@ -175,7 +198,7 @@ export const forgotPassword = catchAsync(async (req, res, next) => {
   }
 });
 
-export const resetPassword = catchAsync(async (req, res, next) => {
+const resetPassword = catchAsync(async (req, res, next) => {
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.token)
@@ -198,7 +221,7 @@ export const resetPassword = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, req, res);
 });
 
-export const updatePassword = catchAsync(async (req, res, next) => {
+const updatePassword = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id).select('+password');
 
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
@@ -211,3 +234,17 @@ export const updatePassword = catchAsync(async (req, res, next) => {
 
   createSendToken(user, 200, req, res);
 });
+
+export {
+  signToken,
+  createSendToken,
+  signup,
+  login,
+  logout,
+  protect,
+  isLoggedIn,
+  restrictTo,
+  forgotPassword,
+  resetPassword,
+  updatePassword,
+};

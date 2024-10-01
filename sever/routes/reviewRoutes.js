@@ -1,6 +1,6 @@
 import express from 'express';
-import reviewController from './../controllers/reviewController.js';
-import authController from './../controllers/authController.js';
+import * as reviewController from './../controllers/reviewController.js';
+import * as authController from './../controllers/authController.js';
 
 const router = express.Router({ mergeParams: true });
 

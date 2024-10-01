@@ -10,17 +10,17 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import AppError from './utils/appError.js';
-import campRouter from './routes/campRoutes.js';
 import userRouter from './routes/userRoutes.js';
+import campRouter from './routes/campRoutes.js';
 import gearRouter from './routes/gearRouter.js';
-import mongoSanitize from 'express-mongo-sanitize';
 import reviewRouter from './routes/reviewRoutes.js';
 import globalErrorHandler from './controllers/errorController.js';
 
 const app = express();
 app.enable('trust proxy');
 
-app.use(express.static(path.join(__dirname, '/public')));
+// ⛔app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.json());
 
 const corsOptions = {
   credentials: true,
@@ -51,24 +51,21 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
-// Data sanitization against NoSQL query injection
-app.use(mongoSanitize());
-
 // Data sanitization against XSS
 app.use(xss());
 
 // Prevent parameter pollution
-app.use(
-  hpp({
-    whitelist: [
-      'ratingsQuantity',
-      'ratingsAverage',
-      'maxGroupSize',
-      'difficulty',
-      'price',
-    ],
-  })
-);
+// app.use(
+//   hpp({
+//     whitelist: [
+//       'ratingsQuantity',
+//       'ratingsAverage',
+//       'maxGroupSize',
+//       'difficulty',
+//       'price',
+//     ],
+//   })
+// );
 
 app.use(compression());
 
@@ -80,8 +77,8 @@ app.use((req, res, next) => {
 });
 
 // 3) ROUTES
-app.use('/api/v1/camps', campRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/camps', campRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/gears', gearRouter);
 
@@ -95,3 +92,5 @@ app.all('*', (req, res, next) => {
 });
 
 app.use(globalErrorHandler);
+
+export default app;

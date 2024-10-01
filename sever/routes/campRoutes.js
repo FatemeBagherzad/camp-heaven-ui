@@ -1,6 +1,6 @@
 import express from 'express';
-import campController from './../controllers/campController.js';
-import authController from './../controllers/authController.js';
+import * as campController from './../controllers/campController.js';
+import * as authController from './../controllers/authController.js';
 import reviewRouter from './../routes/reviewRoutes.js';
 
 const router = express.Router();
