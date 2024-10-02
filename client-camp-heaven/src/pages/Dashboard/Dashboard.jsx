@@ -19,47 +19,56 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const token = sessionStorage.getItem('JWTtoken');
+
   if (!token) {
     navigate('/notLogedIn');
   }
 
   useEffect(() => {
-    axios.get(campsUrl).then((response) => {
-      setAllCamps(response.data.data.data);
-    });
-  }, []);
+    const fetchCamps = async () => {
+      try {
+        const response = await axios.get(campsUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setAllCamps(response.data.data.data);
+        console.log(response.data.data.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching camps:', error);
+      }
+    };
+
+    fetchCamps();
+  }, [campsUrl]);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
   } else {
     return (
       <div className="background">
-        <div className="dashboard ">
-          <TopNav className="dashboard__topNav" />
-          <div className="dashboard__body">
-            <LeftNav className="dashboard__body-leftNav" />
-            {allCamps && (
-              <div className="dashboard__body--charts">
-                <div className="dashboard__body--charts-top">
-                  <TopCampOfYear
-                    allCamps={allCamps}
-                    className="dashboard__body--charts-top-camp"
-                  />
-
-                  <PieChart
-                    allCamps={allCamps}
-                    className="dashboard__body--charts-top-pieChart"
-                  />
-                </div>
-                <ResponsiveChart
+        <div className="dashboard__body">
+          {allCamps && (
+            <div className="dashboard__body--charts">
+              <div className="dashboard__body--charts-top">
+                <TopCampOfYear
                   allCamps={allCamps}
-                  className="dashboard__body--charts-areaChart"
+                  className="dashboard__body--charts-top-camp"
+                />
+
+                <PieChart
+                  allCamps={allCamps}
+                  className="dashboard__body--charts-top-pieChart"
                 />
               </div>
-            )}
-          </div>
+              <ResponsiveChart
+                allCamps={allCamps}
+                className="dashboard__body--charts-areaChart"
+              />
+            </div>
+          )}
         </div>
-        ;
       </div>
     );
   }

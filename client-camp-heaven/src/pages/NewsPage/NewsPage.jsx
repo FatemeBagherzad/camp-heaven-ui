@@ -30,10 +30,7 @@ const GearPage = () => {
 
   return (
     <div className="background">
-      <TopNav />
       <div className="body">
-        <LeftNav />
-
         <section class="NewsMain">
           <div class="Newsfigures">
             <figure class="Newsfigure">

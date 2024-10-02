@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
-const campUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
+const campsUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
 
 const FindCampPage = () => {
   const [camps, setCamps] = useState();
@@ -20,17 +20,26 @@ const FindCampPage = () => {
   }
 
   useEffect(() => {
-    axios.get(campUrl).then((response) => {
-      setCamps(response.data.data.data);
-    });
-  }, []);
+    const fetchCamps = async () => {
+      try {
+        const response = await axios.get(campsUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setCamps(response.data.data.data);
+      } catch (error) {
+        console.error('Error fetching camps:', error);
+      }
+    };
+
+    fetchCamps();
+  }, [campsUrl]);
 
   return (
     <div className="background">
       <div className="findCampPage">
-        <TopNav />
         <div className="findCampPage-body">
-          <LeftNav />
           {camps && <FindCamp camps={camps} />}
         </div>
       </div>

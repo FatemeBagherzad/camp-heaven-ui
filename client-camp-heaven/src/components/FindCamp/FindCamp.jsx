@@ -10,11 +10,17 @@ import { useMemo, useState, useEffect } from 'react';
 import { MarkerF } from '@react-google-maps/api';
 import CampDetail from '../CampDetail/CampDetail';
 
-const FindCamp = ({ camps }) => {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCqbovPZmambDyt1DD2yXu1i2rzs0E_VKg',
-  });
+const mapApi = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
+const FindCamp = ({ camps }) => {
+  // const { isLoaded } = useLoadScript({
+  //   googleMapsApiKey: 'AIzaSyCqbovPZmambDyt1DD2yXu1i2rzs0E_VKg',
+  // });
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: mapApi,
+  });
+  console.log(camps);
   // //FOR NEXT SPRINT
   // const center = useMemo(() => ({ lat: 43.6532, lng: -79.3832 }), []);
   // const [searchQuery, setSearchQuery] = useState('');
@@ -64,7 +70,7 @@ const FindCamp = ({ camps }) => {
             onClick={() => setIsOpen(false)}
           >
             {camps.map(({ address, lat, lng, _id }, ind) => (
-              <Marker
+              <MarkerF
                 key={ind}
                 position={{ lat, lng }}
                 onClick={() => {
@@ -80,7 +86,7 @@ const FindCamp = ({ camps }) => {
                     <h3>{infoWindowData.address}</h3>
                   </InfoWindow>
                 )}
-              </Marker>
+              </MarkerF>
             ))}
           </GoogleMap>
         )}

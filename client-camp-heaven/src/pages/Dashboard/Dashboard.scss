@@ -9,9 +9,9 @@
   height: 100vh;
 }
 .dashboard {
-  max-width: 100rem;
-  margin: auto;
   &__body {
+    max-width: 100rem;
+    margin: auto;
     display: grid;
     grid-template-columns: 1fr;
 

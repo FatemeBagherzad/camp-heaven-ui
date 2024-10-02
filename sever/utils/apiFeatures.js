@@ -9,11 +9,15 @@ class APIFeatures {
     const excludedFields = ['page', 'sort', 'limit', 'fields'];
     excludedFields.forEach((el) => delete queryObj[el]);
     // console.log('------from filter in api', queryObj);
-    // 1B) Advanced filtering
+
+    // Advanced filtering
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
-    this.query = this.query.find(JSON.parse(queryStr));
+    // Use Knex's where to filter based on queryStr
+    const filters = JSON.parse(queryStr);
+    this.query = this.query.where(filters);
+    // this.query = this.query.find(JSON.parse(queryStr));
 
     return this;
   }
@@ -21,9 +25,14 @@ class APIFeatures {
   sort() {
     if (this.queryString.sort) {
       const sortBy = this.queryString.sort.split(',').join(' ');
-      this.query = this.query.sort(sortBy);
+
+      // Use Knex's orderBy method for sorting
+      this.query = this.query.orderByRaw(sortBy);
+      // this.query = this.query.sort(sortBy);
     } else {
-      this.query = this.query.sort('-createdAt');
+      // Default sorting (change 'createdAt' to your actual created date column)
+      this.query = this.query.orderBy('created_at', 'desc');
+      // this.query = this.query.sort('-createdAt');
     }
 
     return this;
@@ -32,9 +41,12 @@ class APIFeatures {
   limitFields() {
     if (this.queryString.fields) {
       const fields = this.queryString.fields.split(',').join(' ');
+
       this.query = this.query.select(fields);
     } else {
-      this.query = this.query.select('-__v');
+      // Exclude version field (change '-__v' as needed)
+      this.query = this.query.select('*');
+      // this.query = this.query.select('-__v');
     }
 
     return this;
@@ -45,7 +57,9 @@ class APIFeatures {
     const limit = this.queryString.limit * 1 || 100;
     const skip = (page - 1) * limit;
 
-    this.query = this.query.skip(skip).limit(limit);
+    // Use Knex's limit and offset methods
+    this.query = this.query.limit(limit).offset(skip);
+    // this.query = this.query.skip(skip).limit(limit);
 
     return this;
   }

@@ -13,9 +13,7 @@ const UserAccount = () => {
   return (
     <>
       <div className="userAccount">
-        <TopNav />
         <div className="userAccount__body">
-          <LeftNav />
           <div className="userAccount__body-main">
             <Account />
           </div>

@@ -1,6 +1,6 @@
 import hpp from 'hpp';
 import cors from 'cors';
-import path from 'path';
+
 import morgan from 'morgan';
 import helmet from 'helmet';
 import xss from 'xss-clean';
@@ -15,11 +15,17 @@ import campRouter from './routes/campRoutes.js';
 import gearRouter from './routes/gearRouter.js';
 import reviewRouter from './routes/reviewRoutes.js';
 import globalErrorHandler from './controllers/errorController.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Assuming you're using Express
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.enable('trust proxy');
 
-// ⛔app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 const corsOptions = {

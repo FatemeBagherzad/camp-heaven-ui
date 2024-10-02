@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login-SignUpPage.scss';
 
+import { useAuth } from '../../context/AuthContext';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import logo from '../../assets/images/logo.png';
@@ -15,11 +16,11 @@ const loginUrl = `${BASE_URL}:${PORT}/api/v1/users/login`;
 const signupUrl = `${BASE_URL}:${PORT}/api/v1/users/signup`;
 
 const Home = () => {
-  const [isSignedUp, setIsSignedUp] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [showSignedUp, setShowSignedUp] = useState(false);
+  const [showLoggin, setShowLoggin] = useState(true);
   const [isLoginError, setIsLoginError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const { setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSignup = (e) => {
@@ -36,7 +37,8 @@ const Home = () => {
         { withCredentials: true }
       )
       .then(() => {
-        setIsSignedUp(false);
+        setShowSignedUp(false);
+        setShowLoggin(true);
         setIsLoggedIn(true);
       })
       .catch((err) => {
@@ -58,7 +60,7 @@ const Home = () => {
       )
       .then((response) => {
         let userId = response.data.data.user._id;
-        // sessionStorage.setItem('JWTtoken', response.data.token);
+        sessionStorage.setItem('JWTtoken', response.data.token);
         sessionStorage.setItem('userId', userId);
 
         setIsLoggedIn(true);
@@ -75,9 +77,6 @@ const Home = () => {
 
   return (
     <>
-      <div className="login__top-nav">
-        <TopNav setIsLoggedIn={setIsLoggedIn} />
-      </div>
       <div className="login">
         <div className="login__formWelcome">
           <div className="login__formWelcome-txt">
@@ -95,9 +94,9 @@ const Home = () => {
             </p>
           </div>
           <div className="login__formWelcome-form">
-            {isSignedUp && <SignUpForm handleSignup={handleSignup} />}
+            {showSignedUp && <SignUpForm handleSignup={handleSignup} />}
 
-            {isLoggedIn && (
+            {showLoggin && (
               <LoginForm
                 handleLogin={handleLogin}
                 isLoginError={isLoginError}
@@ -110,8 +109,8 @@ const Home = () => {
                 Don't have an account ? -
                 <span
                   onClick={() => {
-                    setIsSignedUp(true);
-                    setIsLoggedIn(false);
+                    setShowSignedUp(true);
+                    setShowLoggin(false);
                   }}
                   className="login__formWelcome-form-links-link"
                 >
@@ -122,8 +121,8 @@ const Home = () => {
                 <p
                   className="login__formWelcome-form-links-link"
                   onClick={() => {
-                    setIsSignedUp(false);
-                    setIsLoggedIn(true);
+                    setShowSignedUp(false);
+                    setShowLoggin(true);
                   }}
                 >
                   login

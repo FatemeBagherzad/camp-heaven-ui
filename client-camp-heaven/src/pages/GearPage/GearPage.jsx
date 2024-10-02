@@ -66,10 +66,7 @@ const GearPage = () => {
 
   return (
     <div className="background">
-      <TopNav />
-
       <div className="body">
-        <LeftNav />
         <div className="gears">
           <div className="gears__intro">
             <h2 className="gears__intro-heading">Gears</h2>

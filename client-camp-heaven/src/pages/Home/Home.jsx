@@ -3,21 +3,27 @@ import TopNav from '../../components/TopNav/TopNav';
 import LeftNav from '../../components/LeftNav/LeftNav';
 import CarouselPage from '../../components/Carousel/Carousel';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
 
 const Home = () => {
   const navigate = useNavigate();
+
   const token = sessionStorage.getItem('JWTtoken');
-  if (!token) {
-    navigate('/notLogedIn');
-  }
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/notLogedIn');
+    }
+  }, [token]);
+
+  if (!token) return null;
+
   return (
     <div className="home">
-      <TopNav />
       <div className="home__body">
-        <LeftNav />
         <div className="home__body__main">
           <div className="home__body__main-carasoul">
             <CarouselPage />

@@ -2,7 +2,7 @@ import './TopNav.scss';
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../../context/AuthContext';
 import user from '../../assets/Icons/user-white.png';
 import logOut from '../../assets/Icons/exit-white.png';
 
@@ -12,6 +12,7 @@ const logoutUrl = `${BASE_URL}:${PORT}/api/v1/users/logout`;
 
 const TopNav = ({ userInfo }) => {
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
 
   // const token = sessionStorage.getItem('JWTtoken');
   // if (!token) {
@@ -22,7 +23,7 @@ const TopNav = ({ userInfo }) => {
     try {
       await axios.get(logoutUrl, { withCredentials: true });
       sessionStorage.clear();
-      // setIsLoggedIn(false);
+      setIsLoggedIn(false);
       alert('You are logged out!');
       navigate('/');
     } catch (error) {
