@@ -1,0 +1,99 @@
+@use './fonts' as *;
+@use './variables' as *;
+@use './mixins' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'titillium', sans-serif;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 36px;
+  @include tablet {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  @include tablet {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+h3 {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  @include tablet {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+
+h4,
+label {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 600;
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+
+.body-large {
+  font-size: 0.9375rem;
+  line-height: 1.625rem;
+  @include tablet {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+}
+
+.body-medium,
+p {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  @include tablet {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+
+.body-small,
+::placeholder,
+button {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+.container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 75rem;
+  margin: auto;
+  @include tablet {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  @include desktop {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}

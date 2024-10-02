@@ -1,0 +1,31 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.navTop {
+  background-color: #182130;
+  display: flex;
+  height: 4rem;
+  padding: 1rem 2rem;
+  color: $color-grey-700;
+  justify-content: flex-end;
+  width: 100%;
+  &__right {
+    display: flex;
+    gap: 1rem;
+
+    &-icons {
+      display: flex;
+      gap: 1rem;
+      &-icn {
+        width: 20px;
+        height: 20px;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 2px 2px 5px grey;
+        }
+      }
+    }
+  }
+}

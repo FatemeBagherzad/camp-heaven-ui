@@ -1,0 +1,33 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.loginFirst {
+  margin: 5rem auto;
+  width: 25rem;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem;
+  align-items: center;
+  border: 2px solid;
+  background-color: #182130;
+  color: $color-grey-700;
+  border-radius: 2rem;
+  box-shadow: 5px 10px #888888;
+}
+.btn {
+  box-shadow: 4px 6px #b9b9b9;
+  &:hover {
+    box-shadow: 4px 6px $color-blue-100;
+    background-color: #182130;
+  }
+
+  &:active {
+    transform: translate(4px, 10px);
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,88 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+ul,
+a {
+  text-decoration: none;
+  list-style: none;
+  color: inherit;
+  padding: 0;
+}
+
+.background {
+  background-color: #111828;
+}
+.body {
+  display: flex;
+}
+
+.NewsMain {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 1rem;
+  justify-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+.Newsfigures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 1rem;
+  margin-bottom: 6rem;
+}
+
+.Newsfigure img {
+  width: 40rem;
+  margin-bottom: 1rem;
+}
+
+.Newsfigure {
+  width: 20rem;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgb(233, 233, 233);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.NewsfigureTxt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.Newsfigure h2 {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+.NatImg {
+  height: 50%;
+}
+.Newsfigure span {
+  color: #ccc;
+}
+
+.Newsfigure a {
+  color: #e1c340;
+}
+.NewsSideBar {
+  grid-column: 2;
+  grid-row: 1/-1;
+  font-size: 1rem;
+  line-height: 2rem;
+  padding-left: 2rem;
+  border-left: 2px solid #e1c340;
+  justify-self: start;
+  color: $color-grey-700;
+}
