@@ -65,12 +65,6 @@ const aliasTopCamps = (req, res, next) => {
   next();
 };
 
-const getAllCamps = factory.getAll('camps');
-const getCamp = factory.getOne('camps');
-const createCamp = factory.createOne('camps');
-const updateCamp = factory.updateOne('camps');
-const deleteCamp = factory.deleteOne('camps');
-
 const getCampStats = catchAsync(async (req, res, next) => {
   const stats = await knex('camps')
     .select(
@@ -93,6 +87,12 @@ const getCampStats = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+const getAllCamps = factory.getAll('camps');
+const getCamp = factory.getOne('camps');
+const createCamp = factory.createOne('camps');
+const updateCamp = factory.updateOne('camps');
+const deleteCamp = factory.deleteOne('camps');
 
 export {
   uploadCampImages,

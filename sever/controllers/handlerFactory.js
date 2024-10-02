@@ -76,6 +76,7 @@ const createOne = (table) =>
         },
       });
     }
+
     if (table === 'gears') {
       const { name, category } = req.body;
       if (!name || !category) {
@@ -102,6 +103,32 @@ const createOne = (table) =>
         },
       });
     }
+
+    if (table === 'review') {
+      const existingReview = await knex('reviews')
+        .where({ user: req.user.id, camp: req.body.camp })
+        .first();
+
+      if (existingReview) {
+        return next(
+          new AppError('You have already written a review for this camp', 400)
+        );
+      }
+
+      // Insert the review and get the inserted ID
+      const [insertedId] = await knex('reviews').insert(req.body);
+
+      // Fetch the newly created review using the inserted ID
+      const newReview = await knex('reviews').where({ id: insertedId }).first();
+
+      res.status(201).json({
+        status: 'success',
+        data: {
+          data: newReview,
+        },
+      });
+    }
+
     return next(new AppError('Invalid table name provided.', 400));
   });
 

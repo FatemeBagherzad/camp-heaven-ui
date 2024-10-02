@@ -4,12 +4,15 @@ import * as authController from './../controllers/authController.js';
 
 const router = express.Router({ mergeParams: true });
 
-// router.use(authController.protect);
-router.route('/').get(reviewController.getAllReviews).post(
-  // authController.restrictTo('user'),
-  // reviewController.setCampUserIds,
-  reviewController.createReview
-);
+router.use(authController.protect);
+router
+  .route('/')
+  .get(reviewController.getAllReviews)
+  .post(
+    authController.restrictTo('user'),
+    reviewController.setCampUserIds,
+    reviewController.createReview
+  );
 
 router
   .route('/:id')
@@ -20,6 +23,7 @@ router
   )
   .delete(
     authController.restrictTo('user', 'admin'),
+    reviewController.checkReviewOwnership,
     reviewController.deleteReview
   );
 

@@ -1,5 +1,6 @@
 import initKnex from 'knex';
 import configuration from '../knexfile.js';
+import catchAsync from './../utils/catchAsync.js';
 import * as factory from './handlerFactory.js';
 
 const knex = initKnex(configuration);
@@ -11,6 +12,22 @@ const setCampUserIds = (req, res, next) => {
   if (!req.body.user) req.body.user = req.user.id;
   next();
 };
+
+// Check review ownership for updates and deletes
+const checkReviewOwnership = catchAsync(async (req, res, next) => {
+  const review = await knex('reviews').where({ id: req.params.id }).first();
+  if (!review) {
+    return next(new AppError('No review found with that ID', 404));
+  }
+  // Check if the logged-in user is the author of the review or has admin rights
+  if (review.user !== req.user.id && req.user.role !== 'admin') {
+    return next(
+      new AppError('You do not have permission to perform this action', 403)
+    );
+  }
+
+  next();
+});
 
 // Using string for table name instead of the Review model
 const getAllReviews = factory.getAll('reviews');
@@ -26,4 +43,5 @@ export {
   createReview,
   updateReview,
   deleteReview,
+  checkReviewOwnership,
 };
