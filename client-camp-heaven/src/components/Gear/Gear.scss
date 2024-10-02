@@ -1,0 +1,22 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.singleGear {
+  font-family: Avenir;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  @include desktop {
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+  background-color: $color-grey-200;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  &:hover {
+    background-color: $color-blue-100;
+    cursor: pointer;
+    padding-left: 1rem;
+  }
+}

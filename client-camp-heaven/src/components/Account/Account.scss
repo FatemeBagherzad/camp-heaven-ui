@@ -1,0 +1,13 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.account {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  &__formHeader {
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,23 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.review {
+  display: flex;
+  flex-direction: column;
+  &__imgName {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin: 0.6rem 0 0.6rem 0;
+  }
+  &__img {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+  }
+  &__comment {
+    margin-bottom: 1rem;
+  }
+}

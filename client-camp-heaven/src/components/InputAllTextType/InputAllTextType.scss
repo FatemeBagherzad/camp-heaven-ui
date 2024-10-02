@@ -1,0 +1,107 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 2rem;
+  width: 100%;
+  border: 1px solid $color-grey-400;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  @include tablet {
+    height: 2rem;
+  }
+  &::placeholder {
+    color: $color-grey-400;
+    font-size: 0.8125rem;
+  }
+  &:focus-visible {
+    outline: 1px solid $color-grey-100;
+  }
+
+  &__search {
+    background: url('../../assets/Icons/search-24px.svg') no-repeat right 1rem
+      center;
+    padding-right: 2.5rem;
+    text-transform: none;
+    @include tablet {
+      width: 10rem;
+    }
+  }
+
+  &__userInfo {
+    text-transform: none;
+  }
+
+  &__description {
+    resize: none;
+    text-transform: none;
+    height: 7.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &__dropDown {
+    border-color: $color-grey-200;
+    color: $color-grey-100;
+    border-radius: 1.25rem;
+    height: 2.25rem;
+    width: 100%;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.8125rem;
+    @include tablet {
+      height: 1.875rem;
+    }
+    &:focus {
+      border-color: $color-grey-100;
+      color: $color-grey-600;
+    }
+  }
+
+  &__label {
+    &--labelHeader {
+      height: 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      @include tablet {
+        font-size: 0.875rem;
+      }
+    }
+    &--search {
+      display: none;
+    }
+  }
+}
+input[type='file']::file-selector-button {
+  background-color: $color-blue-100;
+  color: $color-grey-900;
+  border: none;
+  cursor: pointer;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: fit-content;
+  box-shadow: 1px 2px #b9b9b9;
+  @include tablet {
+    // width: fit-content;
+    height: 2.375rem;
+    padding: 0 1rem;
+  }
+  &:hover {
+    background-color: #182130;
+    box-shadow: 1px 2px $color-blue-100;
+  }
+  &:active {
+    transform: translate(2px, 3px);
+    box-shadow: none;
+  }
+}
+input[type='file']::label {
+  font-size: 6rem;
+}

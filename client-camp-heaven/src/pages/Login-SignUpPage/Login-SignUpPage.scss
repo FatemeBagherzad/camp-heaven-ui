@@ -1,0 +1,96 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.login {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../assets/images/home-page-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__formWelcome {
+    background-color: rgba(121, 246, 246, 0.755);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 80rem;
+    padding: 2rem 0.5rem;
+    border-radius: 1rem;
+    @include tablet {
+      width: 90%;
+      padding: 2rem;
+    }
+    @include desktop {
+      grid-template-columns: 1fr 1fr;
+      width: 70%;
+    }
+    &-txt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &-logo {
+        width: 6rem;
+        margin-bottom: 1rem;
+        align-self: center;
+      }
+      &-header {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        @include desktop {
+          font-size: 1.8rem;
+          margin-bottom: 3rem;
+        }
+      }
+      &-p {
+        display: none;
+        @include desktop {
+          display: block;
+          font-size: 1rem;
+          line-height: 2;
+        }
+      }
+    }
+    &-form {
+      margin: 0 auto;
+      width: 100%;
+      @include tablet {
+        width: 70%;
+        max-width: 50rem;
+        &-links {
+          margin-top: 2rem;
+          font-weight: 600;
+          display: flex;
+          flex-direction: column;
+
+          &-loginForgot {
+            display: flex;
+            justify-content: space-between;
+          }
+          &-link {
+            text-decoration: underline;
+            font-size: 1rem;
+            color: $color-indigo-100;
+            &:hover {
+              cursor: pointer;
+              color: $color-yellow-700;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.leftNavDisplay {
+  display: none;
+}
+.login__top-nav {
+  display: none;
+}

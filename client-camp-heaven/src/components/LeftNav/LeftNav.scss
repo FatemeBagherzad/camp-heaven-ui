@@ -1,0 +1,118 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.navLeft {
+  display: none;
+  @include tablet {
+    display: block;
+    padding: 0 2rem 0 2rem;
+    width: 15rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #182130;
+    color: $color-grey-700;
+    gap: 1rem;
+  }
+
+  &__menu {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 2px 2px 5px grey;
+    }
+    @include tablet {
+      display: none;
+    }
+  }
+  &__logo {
+    width: 100px;
+    justify-self: flex-end;
+  }
+  &__searchBox {
+    margin-top: 2rem;
+    width: 100%;
+    &-search {
+      width: 100%;
+    }
+  }
+  &__menuList-ul {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    &-li {
+      padding: 0.5rem;
+      border-radius: 5px;
+      &:hover {
+        cursor: pointer;
+        background-color: #111828;
+      }
+    }
+  }
+}
+
+.navLeftforMobile {
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  z-index: 9999;
+  padding: 0 2rem 0 2rem;
+  width: 15rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #182130;
+  color: $color-grey-700;
+  gap: 1rem;
+
+  &__menu {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 2px 2px 5px grey;
+    }
+    @include tablet {
+      display: none;
+    }
+  }
+  &__logo {
+    width: 100px;
+    justify-self: flex-end;
+  }
+  &__searchBox {
+    margin-top: 2rem;
+    width: 100%;
+    &-search {
+      width: 100%;
+    }
+  }
+  &__menuList-ul {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    &-li {
+      padding: 0.5rem;
+      border-radius: 5px;
+      &:hover {
+        cursor: pointer;
+        background-color: #111828;
+      }
+    }
+  }
+}

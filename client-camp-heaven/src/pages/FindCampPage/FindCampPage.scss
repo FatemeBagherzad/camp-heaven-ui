@@ -1,0 +1,23 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.background {
+  background-color: #111828;
+  // width: 100vw;
+  // height: 100vh;
+}
+.findCampPage {
+  margin: auto;
+  &-body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    @include tablet {
+      display: flex;
+    }
+  }
+}
