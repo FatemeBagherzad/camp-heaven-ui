@@ -13,17 +13,22 @@ const logoutUrl = `${BASE_URL}:${PORT}/api/v1/users/logout`;
 const TopNav = ({ userInfo }) => {
   const navigate = useNavigate();
 
-  const token = sessionStorage.getItem('JWTtoken');
-  if (!token) {
-    navigate('/notLogedIn');
-  }
+  // const token = sessionStorage.getItem('JWTtoken');
+  // if (!token) {
+  //   navigate('/notLogedIn');
+  // }
 
-  const logout = () => {
-    sessionStorage.clear();
-    axios.get(logoutUrl).then((response) => {
-      alert('you are logged out!');
+  const logout = async () => {
+    try {
+      await axios.get(logoutUrl, { withCredentials: true });
+      sessionStorage.clear();
+      // setIsLoggedIn(false);
+      alert('You are logged out!');
       navigate('/');
-    });
+    } catch (error) {
+      console.error('Logout error:', error);
+      alert('There was an error logging you out. Please try again.');
+    }
   };
 
   return (

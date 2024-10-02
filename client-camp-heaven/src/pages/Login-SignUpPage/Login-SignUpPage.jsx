@@ -7,6 +7,7 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import logo from '../../assets/images/logo.png';
 import toast, { Toaster } from 'react-hot-toast';
+import TopNav from '../../components/TopNav/TopNav';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
@@ -74,6 +75,9 @@ const Home = () => {
 
   return (
     <>
+      <div className="login__top-nav">
+        <TopNav setIsLoggedIn={setIsLoggedIn} />
+      </div>
       <div className="login">
         <div className="login__formWelcome">
           <div className="login__formWelcome-txt">
