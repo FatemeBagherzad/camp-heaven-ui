@@ -13,7 +13,6 @@ import AppError from './utils/appError.js';
 import campRouter from './routes/campRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import gearRouter from './routes/gearRouter.js';
-import mongoSanitize from 'express-mongo-sanitize';
 import reviewRouter from './routes/reviewRoutes.js';
 import globalErrorHandler from './controllers/errorController.js';
 
