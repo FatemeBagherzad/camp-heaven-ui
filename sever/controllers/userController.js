@@ -8,8 +8,10 @@ import * as factory from './handlerFactory.js';
 
 const knex = initKnex(configuration);
 
+//Buffer because we have to proccess file before saving it
 const multerStorage = multer.memoryStorage();
 
+//Filter the types of files being uploaded.
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
@@ -18,11 +20,13 @@ const multerFilter = (req, file, cb) => {
   }
 };
 
+//Configures the multer middleware for handling file uploads with the defined storage and fileFilter options.
 const upload = multer({
   storage: multerStorage,
   fileFilter: multerFilter,
 });
 
+//Sets up a middleware to handle single image uploads for a field named 'photo'
 const uploadUserPhoto = upload.single('photo');
 
 const resizeUserPhoto = catchAsync(async (req, res, next) => {
@@ -39,6 +43,7 @@ const resizeUserPhoto = catchAsync(async (req, res, next) => {
   next();
 });
 
+//Selectively update or use only certain fields from an object,
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
   Object.keys(obj).forEach((el) => {
@@ -54,7 +59,6 @@ const getMe = (req, res, next) => {
 
 // Update the user's information
 const updateMe = catchAsync(async (req, res, next) => {
-  // 1) Create error if user POSTs password data
   if (req.body.password || req.body.passwordConfirm) {
     return next(
       new AppError(
@@ -63,21 +67,17 @@ const updateMe = catchAsync(async (req, res, next) => {
       )
     );
   }
-
-  // 2) Filter out unwanted fields that are not allowed to be updated
   const filteredBody = filterObj(req.body, 'name', 'email');
   if (req.file) filteredBody.photo = req.file.filename;
 
-  // 3) Update user in the database using Knex
-  const [updatedUser] = await knex('users')
+  const result = await knex('users')
     .where({ id: req.user.id })
-    .update(filteredBody)
-    .returning('*');
+    .update(filteredBody);
 
+  const updatedUser = await knex('users').where({ id: req.user.id }).first();
   if (!updatedUser) {
     return next(new AppError('User not found', 404));
   }
-
   res.status(200).json({
     status: 'success',
     data: {
@@ -105,12 +105,10 @@ const createUser = (req, res) => {
 };
 
 // Get user by ID
-const getUser = factory.getOne(knex, 'users'); // You may need to adjust factory methods
-const getAllUsers = factory.getAll(knex, 'users');
-
-// Do NOT update passwords with this!
-const updateUser = factory.updateOne(knex, 'users'); // Adjust factory methods as needed
-const deleteUser = factory.deleteOne(knex, 'users'); // Adjust factory methods as needed
+const getUser = factory.getOne('users');
+const getAllUsers = factory.getAll('users');
+const updateUser = factory.updateOne('users');
+const deleteUser = factory.deleteOne('users');
 
 export {
   uploadUserPhoto,
