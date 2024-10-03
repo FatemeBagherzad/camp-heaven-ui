@@ -4,7 +4,7 @@ const CampReviewAll = ({ campReview }) => {
   return (
     <section className="">
       {campReview.map((review) => {
-        return <CampReview review={review} key={review._id} />;
+        return <CampReview review={review} key={review.id} />;
       })}
     </section>
   );

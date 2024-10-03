@@ -104,9 +104,9 @@ const createOne = (table) =>
       });
     }
 
-    if (table === 'review') {
+    if (table === 'reviews') {
       const existingReview = await knex('reviews')
-        .where({ user: req.user.id, camp: req.body.camp })
+        .where({ user_id: req.body.user_id, camp_id: req.body.camp_id })
         .first();
 
       if (existingReview) {
@@ -115,11 +115,8 @@ const createOne = (table) =>
         );
       }
 
-      // Insert the review and get the inserted ID
-      const [insertedId] = await knex('reviews').insert(req.body);
-
-      // Fetch the newly created review using the inserted ID
-      const newReview = await knex('reviews').where({ id: insertedId }).first();
+      const newReview = { ...req.body, id: uniqid() };
+      await knex('reviews').insert(newReview);
 
       res.status(201).json({
         status: 'success',
@@ -224,13 +221,12 @@ const getAll = (table) =>
   catchAsync(async (req, res, next) => {
     let filter = {};
     if (req.params.campId) {
-      filter = { camp: req.params.campId };
+      filter = { camp_id: req.params.campId };
     }
 
     const features = new APIFeatures(knex(table).where(filter), req.query)
       .filter()
       .sort();
-
     const doc = await features.query;
 
     if (table === 'camps') {

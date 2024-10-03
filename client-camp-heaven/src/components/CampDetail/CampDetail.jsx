@@ -9,13 +9,10 @@ import Button from '../Button/Button';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
-const reviewUrl = ` ${BASE_URL}:${PORT}/api/v1/reviews`;
 
 const CampDetail = ({ camp, handleCloseDetail }) => {
   const [campReview, setCampReview] = useState();
   const [reviewForm, setReviewForm] = useState(false);
-  const loggedInUserId = sessionStorage.userId;
-  console.log(loggedInUserId);
 
   const handleCloseForm = () => {
     if (reviewForm) {
@@ -23,20 +20,24 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
     }
   };
 
-  axios.get(`${baseUrl}/api/v1/camps/${camp._id}/reviews`).then((response) => {
-    console.log(response);
-  });
+  const fetchCampReviews = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}:${PORT}/api/v1/camps/${camp.id}/reviews`,
+        {
+          withCredentials: true,
+        }
+      );
+      setCampReview(response.data.data.data);
+      return response.data.data.data;
+    } catch (error) {
+      console.error('Failed to fetch camp reviews:', error);
+    }
+  };
 
   useEffect(() => {
-    axios.get(reviewUrl).then((response) => {
-      let allReviews = response.data.data.data;
-      let campReview = allReviews.filter(
-        (review) => review.camp._id === camp._id
-      );
-
-      setCampReview(campReview);
-    });
-  }, [camp._id]);
+    fetchCampReviews();
+  }, [camp.id]);
 
   return (
     <div>

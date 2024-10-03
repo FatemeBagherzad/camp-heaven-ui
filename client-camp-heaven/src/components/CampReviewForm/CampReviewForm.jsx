@@ -5,25 +5,29 @@ import Button from '../Button/Button';
 // import StarRating from '../StarRating/StarRating';
 import close from '../../assets/Icons/close-24px.svg';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
-const reviewUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
+const campUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
 
 const CampReviewForm = ({ camp, handleCloseForm, campReview }) => {
+  const navigate = useNavigate();
+
   const loggedInUserId = sessionStorage.userId;
-  console.log(`${reviewUrl}/${camp._id}/reviews`);
+  const loggedInUserName = sessionStorage.userName;
 
   const token = sessionStorage.getItem('JWTtoken');
   if (!token) {
+    setIsLoggedIn(false);
     navigate('/notLogedIn');
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     let idMatch = campReview.find((rev) => {
-      rev.user === loggedInUserId;
+      rev.user_id === loggedInUserId;
     });
     if (idMatch) {
       alert('You have a review on this camp!');
@@ -31,16 +35,22 @@ const CampReviewForm = ({ camp, handleCloseForm, campReview }) => {
 
     const newReview = {
       review: event.target.review.value,
-      user: loggedInUserId,
-      camp: camp._id,
+      user_id: loggedInUserId,
+      camp_id: camp.id,
+      rating: 0,
+      likes: 0,
     };
-    axios
-      .post(`${reviewUrl}/${camp._id}/reviews`, newReview)
-      .then((response) => {
-        event.target.reset();
-        alert('Your Review added successfully!');
-        handleCloseForm();
-      });
+    try {
+      await axios.post(`${campUrl}/${camp.id}/reviews`, newReview, {
+        withCredentials: true,
+      }); // Update camp ID
+      event.target.reset();
+      alert('Your review has been added successfully!');
+      handleCloseForm();
+    } catch (error) {
+      console.error('Error adding review:', error);
+      alert('Failed to add review. Please try again later.');
+    }
   };
 
   return (
@@ -54,7 +64,7 @@ const CampReviewForm = ({ camp, handleCloseForm, campReview }) => {
       <h2 className="form__campName">camp name</h2>
       <div className="form__user">
         <img src={userImg} alt="" className="form__user-img" />
-        <p className="form__user-name">user name</p>
+        <p className="form__user-name">{loggedInUserName}</p>
       </div>
 
       {/* <div className="form__star">

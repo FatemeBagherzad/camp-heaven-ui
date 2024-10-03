@@ -59,10 +59,10 @@ const Home = () => {
         { withCredentials: true }
       )
       .then((response) => {
-        let userId = response.data.data.user._id;
+        let userId = response.data.data.user.id;
         sessionStorage.setItem('JWTtoken', response.data.token);
         sessionStorage.setItem('userId', userId);
-
+        sessionStorage.setItem('userName', response.data.data.user.name);
         setIsLoggedIn(true);
         setIsLoginError(false);
         setErrorMessage('');

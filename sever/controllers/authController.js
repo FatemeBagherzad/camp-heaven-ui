@@ -72,6 +72,7 @@ const signup = catchAsync(async (req, res, next) => {
       role: 'user',
       email,
       password: hashedPassword,
+      photo: 'default.jpg',
     });
     const newUser = await knex('users').where({ email }).first();
 
