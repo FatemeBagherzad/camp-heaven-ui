@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import GearAll from '../../components/GearAll/GearAll';
+import { useAuth } from '../../context/AuthContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
@@ -20,12 +21,14 @@ const GearPage = () => {
   const [gearHave, setGearHave] = useState();
   const [gearNotHave, setGearNotHave] = useState();
   const loggedInUserId = sessionStorage.userId;
+  const { setIsLoggedIn } = useAuth();
 
   const token = sessionStorage.getItem('JWTtoken');
   if (!token || !loggedInUserId) {
+    setIsLoggedIn(false);
     navigate('/notLogedIn');
   }
-
+  console.log(sessionStorage);
   useEffect(() => {
     axios.get(`${userGearURL}/${loggedInUserId}/gears`).then((response) => {
       const GearList = response.data.data.data;

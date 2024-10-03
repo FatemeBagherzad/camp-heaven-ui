@@ -5,19 +5,12 @@
 
 .background {
   background-color: #111828;
-  width: 100vw;
-  height: 100vh;
 }
 .dashboard {
   &__body {
-    max-width: 100rem;
+    max-width: 80rem;
     margin: auto;
-    display: grid;
-    grid-template-columns: 1fr;
 
-    @include tablet {
-      grid-template-columns: 1fr 8fr;
-    }
     &--charts {
       display: flex;
       flex-direction: column;
@@ -27,8 +20,8 @@
       gap: 4rem;
       &-top {
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 2fr;
+        grid-template-rows: 1fr;
         gap: 2rem;
         align-items: center;
         @include desktop {

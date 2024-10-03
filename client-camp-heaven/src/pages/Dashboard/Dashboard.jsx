@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Dashboard.scss';
-
+import { useAuth } from '../../context/AuthContext';
 import ResponsiveChart from '../../components/DashboardResponsiveChart/DashboardResponsiveChart';
 import PieChart from '../../components/DashboardPieChart/DashboardPieChart';
-import TopNav from '../../components/TopNav/TopNav';
-import LeftNav from '../../components/LeftNav/LeftNav';
 import TopCampOfYear from '../../components/TopCampOfYear/TopCampOfYear';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -17,10 +15,11 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [allCamps, setAllCamps] = useState();
   const navigate = useNavigate();
-
+  const { setIsLoggedIn } = useAuth();
   const token = sessionStorage.getItem('JWTtoken');
 
   if (!token) {
+    setIsLoggedIn(false);
     navigate('/notLogedIn');
   }
 
@@ -33,7 +32,6 @@ const Dashboard = () => {
           },
         });
         setAllCamps(response.data.data.data);
-        console.log(response.data.data.data);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching camps:', error);

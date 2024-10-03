@@ -3,6 +3,15 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/global' as *;
 
+.loginFirst__background {
+  width: 100vw;
+  height: 100vh;
+  color: #f30808;
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 .loginFirst {
   margin: 5rem auto;
   width: 25rem;

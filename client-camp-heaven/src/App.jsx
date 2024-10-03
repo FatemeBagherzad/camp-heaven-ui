@@ -1,3 +1,6 @@
+// App.jsx
+
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { AuthProvider } from './context/AuthContext';
@@ -14,31 +17,26 @@ import LeftNav from './components/LeftNav/LeftNav';
 
 function App() {
   return (
-    <main>
+    <AuthProvider>
       <BrowserRouter>
-        <AuthProvider>
-          <Routes>
-            <Route path="/" element={<LoginSignUpPage />} />
-            <Route path="/notLogedIn" element={<NotLoggedIn />} />
-          </Routes>
-
-          <div className="App">
-            <TopNav />
-            <div className="App__layout">
-              <LeftNav />
-              <Routes>
-                <Route path="/home" element={<Home />} />
-                <Route path="/find-camp" element={<FindCampPage />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/gears" element={<GearPage />} />
-                <Route path="/news" element={<NewsPage />} />
-                <Route path="/userAccount" element={<UserAccount />} />
-              </Routes>
-            </div>
+        <div className="App">
+          <TopNav />
+          <div className="App__layout">
+            <LeftNav />
+            <Routes>
+              <Route path="/" element={<LoginSignUpPage />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/find-camp" element={<FindCampPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/gears" element={<GearPage />} />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/notLogedIn" element={<NotLoggedIn />} />
+              <Route path="/userAccount" element={<UserAccount />} />
+            </Routes>
           </div>
-        </AuthProvider>{' '}
+        </div>
       </BrowserRouter>
-    </main>
+    </AuthProvider>
   );
 }
 

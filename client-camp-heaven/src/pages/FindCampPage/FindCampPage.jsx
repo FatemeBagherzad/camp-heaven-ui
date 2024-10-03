@@ -5,6 +5,7 @@ import FindCamp from '../../components/FindCamp/FindCamp';
 import LeftNav from '../../components/LeftNav/LeftNav';
 import './FindCampPage.scss';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
@@ -13,9 +14,11 @@ const campsUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
 const FindCampPage = () => {
   const [camps, setCamps] = useState();
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
 
   const token = sessionStorage.getItem('JWTtoken');
   if (!token) {
+    setIsLoggedIn(false);
     navigate('/notLogedIn');
   }
 

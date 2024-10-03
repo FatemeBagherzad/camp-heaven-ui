@@ -13,6 +13,7 @@ import newsImg17 from '../../assets/newsImg/Newsletter17.jpg';
 import newsImg18 from '../../assets/newsImg/Newsletter18.jpg';
 import newsImg19 from '../../assets/newsImg/Newsletter19.jpg';
 import newsImg20 from '../../assets/newsImg/Newsletter20.jpg';
+import { useAuth } from '../../context/AuthContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
@@ -20,11 +21,13 @@ const gearsUrl = `${BASE_URL}:${PORT}/api/v1/gears`;
 
 const GearPage = () => {
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
 
   const loggedInUserId = sessionStorage.userId;
 
   const token = sessionStorage.getItem('JWTtoken');
   if (!token || !loggedInUserId) {
+    setIsLoggedIn(false);
     navigate('/notLogedIn');
   }
 

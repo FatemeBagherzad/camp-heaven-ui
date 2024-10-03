@@ -13,55 +13,67 @@ const DashboardPieChart = ({ allCamps }) => {
     return b.ratingsAverage - c.ratingsAverage;
   });
   const top5Camps = sortedCamps.slice(0, 5);
+  const data = top5Camps.map((camp) => ({
+    ...camp,
+    ratingsAverage: Math.trunc(camp.ratingsAverage * 100) / 100,
+    // ratingsAverage: Math.trunc(camp.ratingsAverage * 100),
+  }));
 
-  const colors = [
-    { color: '#ef4444' },
-    { color: '#f97316' },
-    { color: '#eab308' },
-    { color: '#14b8a6' },
-    { color: '#3b82f6' },
-  ];
-  for (let i = 0; i < top5Camps.length; i++) {
-    top5Camps[i].color = colors[i].color;
-  }
+  const COLORS = ['#ef4444', '#f97316', '#eab308', '#14b8a6', '#3b82f6'];
 
   return (
     <>
       <div className="pie">
         <h2 className="pie__header">Top camps with highest rate in 2023</h2>
-        <ResponsiveContainer height={240}>
-          <PieChart className="pie__layout">
-            <Pie
-              data={top5Camps}
-              nameKey="name"
-              dataKey="ratingsAverage"
-              innerRadius={85}
-              outerRadius={110}
-              cx="50%"
-              cy="50%"
-              paddingAngle={3}
-            >
-              {top5Camps.map((entry) => (
-                <Cell
-                  fill={entry.color}
-                  stroke={entry.color}
-                  key={entry.ratingsAverage}
-                />
-              ))}
-            </Pie>
+        <PieChart width={500} height={400} className="pie__layout">
+          <Pie
+            data={data}
+            cx={120}
+            cy={200}
+            innerRadius={60}
+            outerRadius={80}
+            fill="#8884d8"
+            paddingAngle={5}
+            dataKey="ratingsAverage"
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          {/* <Pie
+            data={data}
+            cx={420}
+            cy={200}
+            startAngle={180}
+            endAngle={0}
+            innerRadius={60}
+            outerRadius={80}
+            // fill="#8884d8"
+            paddingAngle={5}
+            dataKey="ratingsAverage"
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie> */}
 
-            <Tooltip />
+          <Tooltip />
 
-            <Legend
-              verticalAlign="middle"
-              align="right"
-              // width="45%"
-              layout="vertical"
-              iconSize={15}
-              iconType="circle"
-            />
-          </PieChart>
-        </ResponsiveContainer>
+          <Legend
+            verticalAlign="middle"
+            align="right"
+            // width="45%"
+            layout="vertical"
+            iconSize={15}
+            iconType="circle"
+          />
+        </PieChart>
       </div>
     </>
   );

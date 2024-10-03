@@ -10,6 +10,8 @@ import {
 import './DashboardResponsiveChart.scss';
 
 const DashboardResponsiveChart = ({ allCamps }) => {
+  const maxPrice = Math.max(...allCamps.map((camp) => camp.price));
+
   return (
     <div className="chart__heading">
       <h2>Camps prices in 2023</h2>
@@ -30,7 +32,7 @@ const DashboardResponsiveChart = ({ allCamps }) => {
             textAnchor="end"
             tickMargin={10}
           />
-          <YAxis dataKey="price" />
+          <YAxis dataKey="price" domain={[0, maxPrice]} />
 
           <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
           <Tooltip />
@@ -41,7 +43,7 @@ const DashboardResponsiveChart = ({ allCamps }) => {
             fill="#14b8a6"
             strokeWidth={2}
             name="Rating"
-            unit=" out of 5"
+            unit=" $"
           />
         </AreaChart>
       </ResponsiveContainer>
