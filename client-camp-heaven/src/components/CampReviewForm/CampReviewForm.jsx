@@ -11,7 +11,12 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
 const campUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
 
-const CampReviewForm = ({ camp, handleCloseForm, campReview }) => {
+const CampReviewForm = ({
+  camp,
+  handleCloseForm,
+  campReview,
+  handleAddReview,
+}) => {
   const navigate = useNavigate();
 
   const loggedInUserId = sessionStorage.userId;
@@ -41,9 +46,15 @@ const CampReviewForm = ({ camp, handleCloseForm, campReview }) => {
       likes: 0,
     };
     try {
-      await axios.post(`${campUrl}/${camp.id}/reviews`, newReview, {
-        withCredentials: true,
-      }); // Update camp ID
+      const response = await axios.post(
+        `${campUrl}/${camp.id}/reviews`,
+        newReview,
+        {
+          withCredentials: true,
+        }
+      ); // Update camp ID
+      const createdReview = response.data.data.data;
+      handleAddReview(createdReview);
       event.target.reset();
       alert('Your review has been added successfully!');
       handleCloseForm();

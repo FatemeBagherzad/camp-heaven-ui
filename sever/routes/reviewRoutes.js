@@ -15,12 +15,12 @@ router
   .route('/:id')
   .get(reviewController.getReview)
   .patch(
-    authController.restrictTo('user', 'admin'),
+    // authController.restrictTo('user', 'admin'),
     reviewController.updateReview
   )
   .delete(
-    authController.restrictTo('user', 'admin'),
-    reviewController.checkReviewOwnership,
+    // authController.restrictTo('user', 'admin'),
+    // reviewController.checkReviewOwnership,
     reviewController.deleteReview
   );
 

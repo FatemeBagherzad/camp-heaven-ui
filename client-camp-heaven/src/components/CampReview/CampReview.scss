@@ -6,6 +6,21 @@
 .review {
   display: flex;
   flex-direction: column;
+  &__id-and-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  &__icons {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+  &__icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+  }
   &__imgName {
     display: flex;
     gap: 1rem;

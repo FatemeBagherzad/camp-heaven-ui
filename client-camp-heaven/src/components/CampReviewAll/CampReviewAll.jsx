@@ -1,10 +1,16 @@
 import CampReview from '../CampReview/CampReview';
 
-const CampReviewAll = ({ campReview }) => {
+const CampReviewAll = ({ campReview, setCampReview }) => {
   return (
     <section className="">
       {campReview.map((review) => {
-        return <CampReview review={review} key={review.id} />;
+        return (
+          <CampReview
+            review={review}
+            key={review.id}
+            setCampReview={setCampReview}
+          />
+        );
       })}
     </section>
   );

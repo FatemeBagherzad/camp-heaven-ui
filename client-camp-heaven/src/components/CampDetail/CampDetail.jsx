@@ -35,6 +35,10 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
     }
   };
 
+  const handleAddReview = (newReview) => {
+    setCampReview((prevReviews) => [...prevReviews, newReview]);
+  };
+
   useEffect(() => {
     fetchCampReviews();
   }, [camp.id]);
@@ -88,7 +92,12 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
         </div>
         <div className="campDetail__comments">
           <h3>Reviews:</h3>
-          {campReview && <CampReviewAll campReview={campReview} />}
+          {campReview && (
+            <CampReviewAll
+              campReview={campReview}
+              setCampReview={setCampReview}
+            />
+          )}
         </div>
       </div>
 
@@ -99,6 +108,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
             camp={camp}
             handleCloseForm={handleCloseForm}
             campReview={campReview}
+            handleAddReview={handleAddReview}
           />
           )
         </div>
