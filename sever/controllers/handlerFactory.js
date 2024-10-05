@@ -115,7 +115,7 @@ const createOne = (table) =>
         );
       }
 
-      const newReview = { ...req.body, id: uniqid() };
+      const newReview = { id: uniqid(), ...req.body };
       await knex('reviews').insert(newReview);
 
       res.status(201).json({

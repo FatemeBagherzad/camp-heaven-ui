@@ -35,10 +35,6 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
     }
   };
 
-  const handleAddReview = (newReview) => {
-    setCampReview((prevReviews) => [...prevReviews, newReview]);
-  };
-
   useEffect(() => {
     fetchCampReviews();
   }, [camp.id]);
@@ -108,7 +104,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
             camp={camp}
             handleCloseForm={handleCloseForm}
             campReview={campReview}
-            handleAddReview={handleAddReview}
+            setCampReview={setCampReview}
           />
           )
         </div>

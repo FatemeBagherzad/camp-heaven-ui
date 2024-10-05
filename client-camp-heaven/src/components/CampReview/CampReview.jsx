@@ -52,6 +52,7 @@ const CampReview = ({ review, setCampReview }) => {
       }
     }
   };
+
   useEffect(() => {
     if (review.user_id) {
       fetchUserDetails(review.user_id);

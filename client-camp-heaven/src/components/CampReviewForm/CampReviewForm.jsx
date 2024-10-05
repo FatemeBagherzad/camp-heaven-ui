@@ -15,7 +15,7 @@ const CampReviewForm = ({
   camp,
   handleCloseForm,
   campReview,
-  handleAddReview,
+  setCampReview,
 }) => {
   const navigate = useNavigate();
 
@@ -40,9 +40,9 @@ const CampReviewForm = ({
 
     const newReview = {
       review: event.target.review.value,
+      rating: 0,
       user_id: loggedInUserId,
       camp_id: camp.id,
-      rating: 0,
       likes: 0,
     };
     try {
@@ -53,8 +53,13 @@ const CampReviewForm = ({
           withCredentials: true,
         }
       ); // Update camp ID
-      const createdReview = response.data.data.data;
-      handleAddReview(createdReview);
+      const allReviewsAfterPost = await axios.get(
+        `${BASE_URL}:${PORT}/api/v1/camps/${camp.id}/reviews`,
+        {
+          withCredentials: true,
+        }
+      );
+      setCampReview(allReviewsAfterPost.data.data.data);
       event.target.reset();
       alert('Your review has been added successfully!');
       handleCloseForm();
