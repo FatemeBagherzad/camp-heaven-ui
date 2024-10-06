@@ -3,8 +3,13 @@
   padding: 0;
 }
 .rate {
-  float: left;
-  height: 46px;
+  // float: left;
+  direction: rtl;
+  // height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   padding: 0 10px;
 }
 .rate:not(:checked) > input {
@@ -12,7 +17,7 @@
   top: -9999px;
 }
 .rate:not(:checked) > label {
-  float: left;
+  // float: left;
   width: 1em;
   overflow: hidden;
   white-space: nowrap;
@@ -26,6 +31,7 @@
 .rate > input:checked ~ label {
   color: #ffc700;
 }
+
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
   color: #deb217;

@@ -14,6 +14,7 @@ const campUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
 const CampDetail = ({ camp, handleCloseDetail }) => {
   const [campReview, setCampReview] = useState();
   const [reviewForm, setReviewForm] = useState(false);
+  const [userRating, setUserRating] = useState(0);
   const loggedInUserId = sessionStorage.userId;
 
   const handleCloseForm = () => {
@@ -81,7 +82,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
     }
     const newReview = {
       review: event.target.review.value,
-      rating: 0,
+      rating: userRating,
       user_id: loggedInUserId,
       camp_id: camp.id,
       likes: 0,
@@ -96,6 +97,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
       );
       fetchCampReviews();
       event.target.reset();
+      setUserRating(0);
       alert('Your review has been added successfully!');
       handleCloseForm();
     } catch (error) {
@@ -105,6 +107,8 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
   };
 
   useEffect(() => {
+    setUserRating(camp.ratingsAverage || 0);
+    setReviewForm(false);
     fetchCampReviews();
   }, [camp.id]);
 
@@ -123,6 +127,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
           className="campDetail__coverImg"
         />
         <h3>{camp.name}</h3>
+        <h2>Review summary</h2>
         <p>Rating: {camp.ratingsAverage} out of 5</p>
         <hr />
         <p>Address:{camp.address}</p>
@@ -147,8 +152,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
 
         <div className="campDetail__star">
           <hr />
-          <h2>Review summary</h2>
-          <StarRating />
+
           <Button
             btnTxt="Write a review"
             type="{}"
@@ -173,6 +177,8 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
           <CampReviewForm
             handleCloseForm={handleCloseForm}
             handleSubmitReview={handleSubmitReview}
+            userRating={userRating}
+            setUserRating={setUserRating}
           />
           )
         </div>
