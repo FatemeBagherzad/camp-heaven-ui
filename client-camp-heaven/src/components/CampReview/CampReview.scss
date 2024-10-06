@@ -35,4 +35,28 @@
   &__comment {
     margin-bottom: 1rem;
   }
+
+  &__editForm {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem 0;
+    gap: 0.5rem;
+  }
+  &__txtArea {
+    border: 1px dashed grey;
+    padding: 0.5rem;
+    font-family: titillium;
+  }
+  &__editForm-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  &__editForm-btn {
+    padding: 0.05rem 0.5rem;
+    background-color: transparent;
+    border: 1px solid $color-grey-400;
+    color: $color-grey-400;
+    border-radius: 5px;
+  }
 }

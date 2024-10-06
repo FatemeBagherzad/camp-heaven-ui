@@ -9,10 +9,12 @@ import Button from '../Button/Button';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
+const campUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
 
 const CampDetail = ({ camp, handleCloseDetail }) => {
   const [campReview, setCampReview] = useState();
   const [reviewForm, setReviewForm] = useState(false);
+  const loggedInUserId = sessionStorage.userId;
 
   const handleCloseForm = () => {
     if (reviewForm) {
@@ -32,6 +34,73 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
       return response.data.data.data;
     } catch (error) {
       console.error('Failed to fetch camp reviews:', error);
+    }
+  };
+
+  const handleDeleteReview = async (review) => {
+    const confirmDelete = window.confirm(
+      'Are you sure you want to delete this review?'
+    );
+    if (confirmDelete) {
+      try {
+        await axios.delete(`${BASE_URL}:${PORT}/api/v1/reviews/${review.id}`, {
+          withCredentials: true,
+        });
+        fetchCampReviews();
+      } catch (error) {
+        console.error('Failed to delete the review:', error);
+        alert('Failed to delete review. Please try again.');
+      }
+    }
+  };
+
+  const handleEditReview = async (reviewId, updatedContent) => {
+    try {
+      await axios.patch(
+        `${BASE_URL}:${PORT}/api/v1/reviews/${reviewId}`,
+        { review: updatedContent },
+        {
+          withCredentials: true,
+        }
+      );
+      fetchCampReviews();
+    } catch (error) {
+      console.error('Failed to edit the review:', error);
+      alert('Failed to edit review. Please try again.');
+    }
+  };
+
+  const handleSubmitReview = async (event) => {
+    event.preventDefault();
+
+    let idMatch = campReview.find((rev) => {
+      rev.user_id === loggedInUserId;
+    });
+    if (idMatch) {
+      alert('You have a review on this camp!');
+    }
+    const newReview = {
+      review: event.target.review.value,
+      rating: 0,
+      user_id: loggedInUserId,
+      camp_id: camp.id,
+      likes: 0,
+    };
+    try {
+      const response = await axios.post(
+        `${campUrl}/${camp.id}/reviews`,
+        newReview,
+        {
+          withCredentials: true,
+        }
+      );
+      fetchCampReviews();
+      event.target.reset();
+      alert('Your review has been added successfully!');
+      handleCloseForm();
+    } catch (error) {
+      console.error('Error adding review:', error);
+      alert('Failed to add review. Please try again later.');
     }
   };
 
@@ -91,7 +160,8 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
           {campReview && (
             <CampReviewAll
               campReview={campReview}
-              setCampReview={setCampReview}
+              handleDeleteReview={handleDeleteReview}
+              handleEditReview={handleEditReview}
             />
           )}
         </div>
@@ -101,10 +171,8 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
         <div className="campFormContainer">
           (
           <CampReviewForm
-            camp={camp}
             handleCloseForm={handleCloseForm}
-            campReview={campReview}
-            setCampReview={setCampReview}
+            handleSubmitReview={handleSubmitReview}
           />
           )
         </div>

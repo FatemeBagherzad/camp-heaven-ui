@@ -1,6 +1,10 @@
 import CampReview from '../CampReview/CampReview';
 
-const CampReviewAll = ({ campReview, setCampReview }) => {
+const CampReviewAll = ({
+  campReview,
+  handleDeleteReview,
+  handleEditReview,
+}) => {
   return (
     <section className="">
       {campReview.map((review) => {
@@ -8,7 +12,8 @@ const CampReviewAll = ({ campReview, setCampReview }) => {
           <CampReview
             review={review}
             key={review.id}
-            setCampReview={setCampReview}
+            handleDeleteReview={handleDeleteReview}
+            handleEditReview={handleEditReview}
           />
         );
       })}

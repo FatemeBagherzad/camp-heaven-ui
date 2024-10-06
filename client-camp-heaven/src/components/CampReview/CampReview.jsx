@@ -7,9 +7,11 @@ import editIcn from '../../assets/Icons/edit-grey.png';
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
 
-const CampReview = ({ review, setCampReview }) => {
+const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
   const [user, setUser] = useState(null);
   const [userPhoto, setUserPhoto] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editContent, setEditContent] = useState(review.review);
   const loggedInUserId = sessionStorage.getItem('userId');
 
   const fetchUserDetails = async (userId) => {
@@ -29,28 +31,13 @@ const CampReview = ({ review, setCampReview }) => {
     }
   };
 
-  const handleDeleteReview = async () => {
-    const confirmDelete = window.confirm(
-      'Are you sure you want to delete this review?'
-    );
-    if (confirmDelete) {
-      try {
-        await axios.delete(`${BASE_URL}:${PORT}/api/v1/reviews/${review.id}`, {
-          withCredentials: true,
-        });
-        alert('Review deleted successfully.');
-        const allReviewsAfterDelete = await axios.get(
-          `${BASE_URL}:${PORT}/api/v1/camps/${review.camp_id}/reviews`,
-          {
-            withCredentials: true,
-          }
-        );
-        setCampReview(allReviewsAfterDelete.data.data.data);
-      } catch (error) {
-        console.error('Failed to delete the review:', error);
-        alert('Failed to delete review. Please try again.');
-      }
-    }
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    handleEditReview(review.id, editContent);
+    setIsEditing(false);
   };
 
   useEffect(() => {
@@ -79,19 +66,43 @@ const CampReview = ({ review, setCampReview }) => {
                 src={editIcn}
                 alt="edit icon"
                 className="review__icon"
-                // onClick={handleEditReview}
+                onClick={handleEditClick}
               />
               <img
                 src={deleteIcn}
                 alt="delete icon"
                 className="review__icon"
-                onClick={handleDeleteReview}
+                onClick={() => handleDeleteReview(review)}
               />
             </div>
           )}
         </div>
 
-        <p className="review__comment">{review.review}</p>
+        {isEditing ? (
+          <div className="review__editForm">
+            <textarea
+              className="review__txtArea"
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
+            />
+            <div className="review__editForm-btn-container">
+              <button
+                onClick={handleSaveClick}
+                className="review__editForm-btn"
+              >
+                Save
+              </button>
+              <button
+                onClick={() => setIsEditing(false)}
+                className="review__editForm-btn"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p className="review__comment">{review.review}</p>
+        )}
         <hr />
       </div>
     );
