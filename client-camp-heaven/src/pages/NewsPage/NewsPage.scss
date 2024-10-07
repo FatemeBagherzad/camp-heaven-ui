@@ -22,6 +22,7 @@ a {
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-rows: auto;
+  padding: 3rem;
   column-gap: 1rem;
   justify-items: center;
   justify-content: space-evenly;
@@ -30,20 +31,32 @@ a {
 
 .Newsfigures {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1;
   grid-template-rows: auto;
   gap: 1rem;
   margin-bottom: 6rem;
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .Newsfigure img {
-  width: 40rem;
-  margin-bottom: 1rem;
+  width: 20rem;
+  margin-bottom: 0.2rem;
+  @include tablet {
+    width: 30rem;
+  }
+  @include desktop {
+    width: 40rem;
+  }
 }
 
 .Newsfigure {
-  width: 20rem;
-  height: 30rem;
+  width: 15rem;
+  height: 21rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -51,23 +64,51 @@ a {
   border-radius: 11px;
   overflow: hidden;
   transition: all 0.4s;
+  @include tablet {
+    width: 18rem;
+    height: 26rem;
+  }
+  @include desktop {
+    width: 20rem;
+  }
 }
 .NewsfigureTxt {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1.5rem;
-  padding: 1rem;
+  gap: 0.5rem;
+  padding: 0.6rem;
   font-size: 1rem;
   line-height: 1.5rem;
 }
 .Newsfigure h2 {
   font-size: 1.2rem;
   line-height: 1.8rem;
+  /* Ensure the container can hide overflow and show ellipsis */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Limit to 2 lines */
+  -webkit-line-clamp: 2;
+  max-height: calc(1.8rem * 2); /* Limit the height to two lines */
+}
+.Newsfigure p {
+  font-size: 0.8rem;
+  // line-height: 1.5rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  max-height: calc(1.8rem * 2);
 }
 .NatImg {
-  height: 50%;
+  height: 40%;
+  @include tablet {
+    height: 50%;
+  }
 }
 .Newsfigure span {
   color: #ccc;
@@ -79,10 +120,18 @@ a {
 .NewsSideBar {
   grid-column: 2;
   grid-row: 1/-1;
-  font-size: 1rem;
-  line-height: 2rem;
-  padding-left: 2rem;
+  font-size: 0.8rem;
+  line-height: 2;
+  padding-left: 0.3rem;
   border-left: 2px solid #e1c340;
   justify-self: start;
   color: $color-grey-700;
+  @include tablet {
+    font-size: 1rem;
+    line-height: 2rem;
+    padding-left: 1rem;
+    border-left: 2px solid #e1c340;
+    justify-self: start;
+    color: $color-grey-700;
+  }
 }

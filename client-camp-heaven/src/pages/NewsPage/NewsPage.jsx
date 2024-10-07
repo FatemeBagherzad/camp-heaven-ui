@@ -34,11 +34,11 @@ const GearPage = () => {
   return (
     <div className="background">
       <div className="body">
-        <section class="NewsMain">
-          <div class="Newsfigures">
-            <figure class="Newsfigure">
-              <img src={newsImg11} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+        <section className="NewsMain">
+          <div className="Newsfigures">
+            <figure className="Newsfigure">
+              <img src={newsImg11} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>
                   BCC Provides Recommendations on Policy Issues on Climate
                   Policy for the Alberta Government
@@ -50,9 +50,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg12} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg12} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>
                   BCC Participates in the Federal Governments Rule Making
                   Process for Canada’s Offset Marketplace
@@ -64,9 +64,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg13} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg13} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>May 2021 Newsletter</h2>
                 <span>May 1, 2021</span>
                 <p>
@@ -79,9 +79,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg14} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg14} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>March 2021 Newsletter</h2>
                 <span>Mar 6, 2021</span>
                 <p>
@@ -94,9 +94,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg15} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg15} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>The Canadian Farm Business and Greenhouse Gas Emissions</h2>
                 <span>Feb 24, 2021</span>
                 <p>
@@ -108,9 +108,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg16} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg16} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>
                   Update on the Federal Greenhouse Gas (GHG) Offset System
                 </h2>
@@ -124,9 +124,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg17} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg17} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>
                   Joint Advice to Federal Departments for spending of New and
                   Existing Program money on Natural Climate Solutions
@@ -141,9 +141,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg18} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg18} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>January 2021 Newsletter</h2>
                 <span>Jan 1, 2021</span>
                 <p>
@@ -156,9 +156,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg19} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg19} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>Emissions in Canadian Agriculture</h2>
                 <span>Sep 27, 2020</span>
                 <p>
@@ -171,9 +171,9 @@ const GearPage = () => {
                 </a>
               </div>
             </figure>
-            <figure class="Newsfigure">
-              <img src={newsImg20} alt="Nature image" class="NatImg" />
-              <div class="NewsfigureTxt">
+            <figure className="Newsfigure">
+              <img src={newsImg20} alt="Nature image" className="NatImg" />
+              <div className="NewsfigureTxt">
                 <h2>Carbon Offsets Markets in Canada</h2>
                 <span>Sep 21, 2020</span>
                 <p>
@@ -188,7 +188,7 @@ const GearPage = () => {
             </figure>
           </div>
 
-          <div class="NewsSideBar">
+          <div className="NewsSideBar">
             <aside>
               <h2>Archive</h2>
               <ul>
@@ -196,7 +196,7 @@ const GearPage = () => {
                   <a
                     href="UploadsPDF/For News.pdf"
                     target="_blank"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     September 2022
                   </a>
@@ -205,7 +205,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     May 2022
                   </a>
@@ -214,7 +214,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     March 2022
                   </a>
@@ -223,7 +223,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     December 2021
                   </a>
@@ -232,7 +232,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     October 2021
                   </a>
@@ -241,7 +241,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     September 2021
                   </a>
@@ -250,7 +250,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     July 2021
                   </a>
@@ -259,7 +259,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     June 2021
                   </a>
@@ -268,7 +268,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     May 2021
                   </a>
@@ -277,7 +277,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     March 2021
                   </a>
@@ -286,7 +286,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     February 2021
                   </a>
@@ -295,7 +295,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     January 2021
                   </a>
@@ -304,7 +304,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     September 2020
                   </a>
@@ -313,7 +313,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     July 2020
                   </a>
@@ -322,7 +322,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     December 2019
                   </a>
@@ -331,7 +331,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     December 2018
                   </a>
@@ -340,7 +340,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     April 2018
                   </a>
@@ -349,7 +349,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     January 2018
                   </a>
@@ -358,7 +358,7 @@ const GearPage = () => {
                   <a
                     target="_blank"
                     href="UploadsPDF/For News.pdf"
-                    class="AllLinks"
+                    className="AllLinks"
                   >
                     December 2017
                   </a>

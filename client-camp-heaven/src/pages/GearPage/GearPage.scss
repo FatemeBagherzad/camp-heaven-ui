@@ -8,9 +8,7 @@
   width: 100vw;
   height: fit-content;
 }
-.body {
-  display: flex;
-}
+
 .gears {
   width: 100%;
   display: flex;
@@ -18,7 +16,7 @@
   color: $color-grey-700;
   padding: 1rem 1rem 2rem 1rem;
   @include desktop {
-    padding: 1rem 5rem 10rem 5rem;
+    padding: 3rem 5rem 10rem 5rem;
   }
   gap: 2rem;
   height: 100vh;
@@ -28,18 +26,22 @@
   &__intro {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    &-heading {
-      font-size: 2rem;
-    }
-    &-p {
-      font-family: Avenir;
+    background-color: $color-grey-700;
+    color: $color-blue-100;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
+    border-radius: 5px;
+  }
+  &__intro-heading {
+    font-size: 2rem;
+  }
+  &__intro-p {
+    font-family: Avenir;
+    font-size: 1rem;
+    // line-height: 1.5;
+    @include desktop {
       font-size: 1.2rem;
-      line-height: 1.5;
-      @include desktop {
-        font-size: 1.4rem;
-        line-height: 1.7;
-      }
+      line-height: 1.7;
     }
   }
 

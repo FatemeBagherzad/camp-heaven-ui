@@ -92,41 +92,38 @@ const GearPage = () => {
 
   return (
     <div className="background">
-      <div className="body">
-        <div className="gears">
-          <div className="gears__intro">
-            <h2 className="gears__intro-heading">Gears</h2>
-            <p className="gears__intro-p">
-              Whether it’s your first time car camping or you’ve been at it for
-              years, it never hurts to have a good checklist. To help you get
-              out of the house with all of the essentials in tow, we’ve outlined
-              everything you need including campsite and sleeping gear, camp
-              kitchen essentials, outdoor clothing and footwear, health and
-              hygiene products, and personal items and extras.
-              <br /> You can make a list of what you have by clicking on each
-              item.
-            </p>
-
-            <div className="gears__list">
-              <div className="gears__list-all">
-                <p className="gears__list-titr">Not in your list yet!!</p>
-                {gearNotHave && (
-                  <GearAll
-                    gears={gearNotHave}
-                    onGearClick={(gearId) => toggleGearStatus(gearId)}
-                  />
-                )}
-              </div>
-              <div className="gears__list-userHave">
-                <p className="gears__list-titr">You have these!</p>
-                {gearHave && (
-                  <GearAll
-                    gears={gearHave}
-                    onGearClick={(gearId) => toggleGearStatus(gearId)}
-                  />
-                )}
-              </div>
-            </div>
+      <div className="gears">
+        <div className="gears__intro">
+          <h2 className="gears__intro-heading">Gears</h2>
+          <p className="gears__intro-p">
+            Whether it’s your first time car camping or you’ve been at it for
+            years, it never hurts to have a good checklist. To help you get out
+            of the house with all of the essentials in tow, we’ve outlined
+            everything you need including campsite and sleeping gear, camp
+            kitchen essentials, outdoor clothing and footwear, health and
+            hygiene products, and personal items and extras.
+            <br /> You can make a list of what you have by clicking on each
+            item.
+          </p>
+        </div>
+        <div className="gears__list">
+          <div className="gears__list-all">
+            <p className="gears__list-titr">Not in your list yet!! 📝</p>
+            {gearNotHave && (
+              <GearAll
+                gears={gearNotHave}
+                onGearClick={(gearId) => toggleGearStatus(gearId)}
+              />
+            )}
+          </div>
+          <div className="gears__list-userHave">
+            <p className="gears__list-titr">You have these!⏬</p>
+            {gearHave && (
+              <GearAll
+                gears={gearHave}
+                onGearClick={(gearId) => toggleGearStatus(gearId)}
+              />
+            )}
           </div>
         </div>
       </div>
