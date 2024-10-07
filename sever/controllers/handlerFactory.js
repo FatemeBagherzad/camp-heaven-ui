@@ -248,6 +248,30 @@ const getAll = (table) =>
       });
     }
 
+    if (table === 'gears') {
+      const { userId } = req.params;
+
+      const userGears = await knex('gears').whereRaw(
+        'JSON_CONTAINS(usersid, ?)',
+        JSON.stringify(userId)
+      );
+
+      const notUserGears = await knex('gears').whereNotIn(
+        'id',
+        knex('gears')
+          .select('id')
+          .whereRaw('JSON_CONTAINS(usersid, ?)', JSON.stringify(userId))
+      );
+
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          have: userGears,
+          notHave: notUserGears,
+        },
+      });
+    }
+
     res.status(200).json({
       status: 'success',
       results: doc.length,

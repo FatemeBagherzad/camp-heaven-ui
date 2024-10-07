@@ -1,7 +1,4 @@
 import './GearPage.scss';
-
-import TopNav from '../../components/TopNav/TopNav';
-import LeftNav from '../../components/LeftNav/LeftNav';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -10,14 +7,9 @@ import { useAuth } from '../../context/AuthContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
-const gearsUrl = `${BASE_URL}:${PORT}/api/v1/gears`;
-const userUrl = `${BASE_URL}:${PORT}/api/v1/users`;
-const userGearURL = `${BASE_URL}:${PORT}/api/v1/users`;
 
 const GearPage = () => {
   const navigate = useNavigate();
-  const [allGears, setGears] = useState();
-  const [gearStatus, setGearStatus] = useState(true);
   const [gearHave, setGearHave] = useState();
   const [gearNotHave, setGearNotHave] = useState();
   const loggedInUserId = sessionStorage.userId;
@@ -28,42 +20,73 @@ const GearPage = () => {
     setIsLoggedIn(false);
     navigate('/notLogedIn');
   }
-  console.log(sessionStorage);
-  useEffect(() => {
-    axios.get(`${userGearURL}/${loggedInUserId}/gears`).then((response) => {
-      const GearList = response.data.data.data;
-      const notHaveList = GearList.filter((a) => a.have === 'no');
-      setGearNotHave(notHaveList);
-      const haveList = GearList.filter((a) => a.have === 'yes');
-      setGearHave(haveList);
-      setGears(GearList);
-    });
-  }, [gearStatus]);
 
+  const fetchGears = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}:${PORT}/api/v1/users/${loggedInUserId}/gears`,
+        {
+          withCredentials: true,
+        }
+      );
+      setGearHave(response.data.data.have);
+      setGearNotHave(response.data.data.notHave);
+    } catch (err) {
+      console.error('Error fetching gears for logged in user:', err);
+    }
+  };
   useEffect(() => {
-    axios.get(`${userGearURL}/${loggedInUserId}`).then((response) => {
-      console.log(response);
-    });
-  });
+    fetchGears();
+  }, [loggedInUserId]);
 
-  const checkGear = (gear) => {
-    const gearId = gear.id;
-    console.log(gearId);
-    axios
-      .patch(`${userGearURL}/${loggedInUserId}/gears/${gearId}`, {
-        gearName: gear.name,
-        gearId: gear.id,
-        userId: loggedInUserId,
-      })
-      .then((response) => {
-        console.log(response);
-        // return axios.get(`${userGearURL}/${loggedInUserId}`);
-      })
-      .catch((err) => console.log(err));
+  const toggleGearStatus = async (gearId) => {
+    try {
+      const gearResponse = await axios.get(
+        `${BASE_URL}:${PORT}/api/v1/gears/${gearId}`,
+        { withCredentials: true }
+      );
+      const gearData = gearResponse.data.data.data;
+      let usersArray = gearData.usersid;
+      const userHasGear = usersArray.includes(loggedInUserId);
+
+      let updatedUsersArray;
+      if (userHasGear) {
+        updatedUsersArray = usersArray.filter(
+          (userId) => userId !== loggedInUserId
+        );
+      } else {
+        updatedUsersArray = [...usersArray, loggedInUserId];
+      }
+
+      const updatedGear = await axios.patch(
+        `${BASE_URL}:${PORT}/api/v1/gears/${gearId}`,
+        { usersid: JSON.stringify(updatedUsersArray) },
+        { withCredentials: true }
+      );
+
+      if (userHasGear) {
+        setGearHave((prevGearHave) =>
+          prevGearHave.filter((gear) => gear.id !== gearId)
+        );
+        setGearNotHave((prevGearNotHave) => [
+          ...prevGearNotHave,
+          { ...gearData, usersid: JSON.stringify(updatedUsersArray) },
+        ]);
+      } else {
+        setGearNotHave((prevGearNotHave) =>
+          prevGearNotHave.filter((gear) => gear.id !== gearId)
+        );
+        setGearHave((prevGearHave) => [
+          ...prevGearHave,
+          { ...gearData, usersid: JSON.stringify(updatedUsersArray) },
+        ]);
+      }
+    } catch (err) {
+      console.error('Error updating gear status:', err);
+    }
   };
 
   if (!gearHave && !gearNotHave) {
-    console.log('Loading gears!!');
     return <h1>Loading gears!!</h1>;
   }
 
@@ -87,13 +110,21 @@ const GearPage = () => {
             <div className="gears__list">
               <div className="gears__list-all">
                 <p className="gears__list-titr">Not in your list yet!!</p>
-                {allGears && (
-                  <GearAll gears={gearNotHave} checkGear={checkGear} />
+                {gearNotHave && (
+                  <GearAll
+                    gears={gearNotHave}
+                    onGearClick={(gearId) => toggleGearStatus(gearId)}
+                  />
                 )}
               </div>
               <div className="gears__list-userHave">
                 <p className="gears__list-titr">You have these!</p>
-                {allGears && <GearAll gears={gearHave} checkGear={checkGear} />}
+                {gearHave && (
+                  <GearAll
+                    gears={gearHave}
+                    onGearClick={(gearId) => toggleGearStatus(gearId)}
+                  />
+                )}
               </div>
             </div>
           </div>

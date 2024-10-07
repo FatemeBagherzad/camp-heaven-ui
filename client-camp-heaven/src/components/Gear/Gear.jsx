@@ -1,16 +1,10 @@
 import './Gear.scss';
 
-const Gear = ({ gear, checkGear }) => {
-  const checkGearStatus = () => {
-    checkGear(gear);
-  };
-
+const Gear = ({ gear, onGearClick }) => {
   return (
-    <>
-      <p className="singleGear" onClick={checkGearStatus}>
-        {gear.name}
-      </p>
-    </>
+    <div onClick={() => onGearClick(gear.id)}>
+      <p className="singleGear">{gear.name}</p>
+    </div>
   );
 };
 export default Gear;
