@@ -1,10 +1,10 @@
-# Camp Heaven ![Camp Heaven](./client-camp-heaven/src/assets/images/logo.png)
+# Camp Heaven ![Camp Heaven](./client-camp-heaven/src/assets/images/logo-for-readme.png)
 
-# My Capstone project to practice React MySQL Node
+# My Capstone project to practice React, MySQL, Node.js
 
 ## Live Demo
 
-Check out the live demo of Camp Heaven: [Live Demo on Netlify](<(https://fateme-camp-heaven.netlify.app)>)
+Check out the live demo of Camp Heaven: [Live Demo on Netlify](https://fateme-camp-heaven.netlify.app)
 
 ## Project Overview
 
