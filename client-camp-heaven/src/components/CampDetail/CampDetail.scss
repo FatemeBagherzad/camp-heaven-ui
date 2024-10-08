@@ -1,0 +1,75 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.campDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem 2rem 1rem 2rem;
+  position: relative;
+  justify-content: flex-start;
+  // width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  background-color: white;
+  border-left: 2px solid #111828;
+
+  @include tablet {
+    width: 25rem;
+  }
+  &__star {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+  &__closeIcn {
+    width: 20px;
+    position: absolute;
+    left: 0.6rem;
+    top: 0.6rem;
+    border: 2px solid rgb(214, 214, 214);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__coverImg {
+    width: 20rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+  }
+  &__imgs {
+    display: flex;
+    min-height: 13rem;
+    gap: 0.5rem;
+    // overflow: hidden;
+    overflow-x: scroll;
+    // white-space: nowrap;
+    // scroll-behavior: smooth;
+    &-img {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 5px;
+    }
+  }
+  &__comments {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.campFormContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(43, 43, 43, 0.698);
+  position: fixed;
+  top: 0;
+  left: 0;
+}

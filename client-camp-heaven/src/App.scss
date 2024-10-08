@@ -1,0 +1,17 @@
+@use './styles/partials/fonts' as *;
+@use './styles/partials/variables' as *;
+@use './styles/partials/mixins' as *;
+@use './styles/partials/global' as *;
+
+.App {
+  display: flex;
+  flex-direction: column;
+  background-color: #111828;
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: scroll;
+  // height: 100rem;
+  &__layout {
+    display: flex;
+  }
+}

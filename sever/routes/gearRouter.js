@@ -1,9 +1,9 @@
 import express from 'express';
-import gearController from './../controllers/gearController.js';
+import * as gearController from './../controllers/gearController.js';
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
-router.route('/').get(gearController.getAllgears);
+router.route('/').get(gearController.getAllGears);
 
 router
   .route('/:id')

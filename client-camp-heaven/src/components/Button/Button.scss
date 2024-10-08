@@ -1,0 +1,59 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.button {
+  background-color: $color-blue-100;
+  color: $color-grey-900;
+  border: none;
+  cursor: pointer;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: 100%;
+  box-shadow: 1px 2px #b9b9b9;
+  @include tablet {
+    // width: fit-content;
+    height: 2.375rem;
+    padding: 0 1rem;
+  }
+  &:hover {
+    background-color: #182130;
+    box-shadow: 1px 2px $color-blue-100;
+  }
+  &:active {
+    transform: translate(2px, 3px);
+    box-shadow: none;
+  }
+
+  &--cancel {
+    background-color: $color-grey-900;
+    color: $color-grey-50;
+    border: 1px SOLID $color-grey-100;
+    &:hover {
+      border-color: $color-blue-100;
+      color: $color-blue-100;
+      background-color: $color-grey-900;
+    }
+  }
+
+  &--delete {
+    background-color: $color-red-800;
+    color: $color-grey-900;
+    border-color: transparent;
+    &:hover {
+      background-color: $color-grey-100;
+    }
+  }
+  &--noshow {
+    display: none;
+  }
+  &--edit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

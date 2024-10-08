@@ -1,0 +1,62 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.review {
+  display: flex;
+  flex-direction: column;
+  &__id-and-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  &__icons {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+  &__icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+  }
+  &__imgName {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin: 0.6rem 0 0.6rem 0;
+  }
+  &__img {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+  }
+  &__comment {
+    margin-bottom: 1rem;
+  }
+
+  &__editForm {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem 0;
+    gap: 0.5rem;
+  }
+  &__txtArea {
+    border: 1px dashed grey;
+    padding: 0.5rem;
+    font-family: titillium;
+  }
+  &__editForm-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  &__editForm-btn {
+    padding: 0.05rem 0.5rem;
+    background-color: transparent;
+    border: 1px solid $color-grey-400;
+    color: $color-grey-400;
+    border-radius: 5px;
+  }
+}

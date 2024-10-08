@@ -1,6 +1,11 @@
-import factory from './handlerFactory.js';
-import Gear from './../models/gearModel.js';
+import initKnex from 'knex';
+import configuration from '../knexfile.js';
+import * as factory from './handlerFactory.js';
 
-export const getAllgears = factory.getAll(Gear);
-export const getGear = factory.getOne(Gear, { path: 'users' });
-export const updateGear = factory.updateOne(Gear);
+const knex = initKnex(configuration);
+
+const getAllGears = factory.getAll('gears');
+const getGear = factory.getOne('gears', { path: 'users' });
+const updateGear = factory.updateOne('gears');
+
+export { getAllGears, getGear, updateGear };

@@ -1,0 +1,39 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.background {
+  background-color: #111828;
+}
+.dashboard {
+  &__body {
+    max-width: 80rem;
+    margin: auto;
+
+    &--charts {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem;
+      gap: 4rem;
+      &-top {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr;
+        gap: 2rem;
+        align-items: center;
+        @include tablet {
+          grid-template-columns: 2fr;
+          grid-template-rows: 1fr;
+        }
+
+        @include desktop {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+        }
+      }
+    }
+  }
+}

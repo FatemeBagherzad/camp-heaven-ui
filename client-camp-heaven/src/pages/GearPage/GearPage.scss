@@ -1,0 +1,66 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.background {
+  background-color: #111828;
+  width: 100vw;
+  height: fit-content;
+}
+
+.gears {
+  max-width: 80rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  color: $color-grey-700;
+  gap: 2rem;
+  padding: 1rem 1rem 2rem 1rem;
+  @include desktop {
+    padding: 3rem 5rem 10rem 5rem;
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
+    border-radius: 5px;
+  }
+  &__intro-heading {
+    font-size: 2rem;
+  }
+  &__intro-p {
+    background-color: #182130;
+    font-family: Avenir;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 3px solid $color-blue-100;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 80%;
+    margin: auto;
+    @include tablet {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    &-titr {
+      font-size: 1.2rem;
+      font-weight: 600;
+      font-family: Avenir;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid $color-blue-100;
+      margin: 1rem auto;
+      text-align: center;
+      @include desktop {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

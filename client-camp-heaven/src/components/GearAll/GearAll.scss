@@ -1,0 +1,10 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.gearAll {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

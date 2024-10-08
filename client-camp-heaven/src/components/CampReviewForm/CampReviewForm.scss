@@ -1,0 +1,63 @@
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/global' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: $color-grey-900;
+  border-radius: 1rem;
+  width: 40rem;
+  position: relative;
+  &__closeIcn {
+    width: 20px;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    border: 2px solid rgb(214, 214, 214);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__form__campName {
+    align-self: center;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    gap: 0.5rem;
+    &-img {
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &__star {
+    margin: auto;
+  }
+
+  &__addPhotoBtn {
+    width: 70%;
+    margin: auto;
+  }
+  &__cancelPostBtn-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__cancelPostBtn {
+    display: flex;
+    gap: 1rem;
+    width: 50%;
+
+    justify-content: flex-end;
+  }
+}
