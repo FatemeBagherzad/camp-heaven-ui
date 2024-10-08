@@ -1,9 +1,12 @@
 import './Home.scss';
-import TopNav from '../../components/TopNav/TopNav';
-import LeftNav from '../../components/LeftNav/LeftNav';
 import CarouselPage from '../../components/Carousel/Carousel';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import campImg from '../../assets/images/screen-shot/camp.jpg';
+import dashboaerImg from '../../assets/images/screen-shot/dash.jpg';
+import gearPageImg from '../../assets/images/screen-shot/account.jpg';
+import accountPageImg from '../../assets/images/screen-shot/camp.jpg';
+import newPageImg from '../../assets/images/screen-shot/news.jpg';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
@@ -19,15 +22,44 @@ const Home = () => {
     }
   }, [token]);
 
+  const cardData = [
+    {
+      title: 'Select Camp',
+      image: campImg, // replace with actual path
+      link: '/find-camp',
+    },
+    {
+      title: 'Gear Page',
+      image: gearPageImg, // replace with actual path
+      link: '/gears',
+    },
+    {
+      title: 'News Page',
+      image: newPageImg, // replace with actual path
+      link: '/news',
+    },
+    {
+      title: 'User Account',
+      image: accountPageImg, // replace with actual path
+      link: '/userAccount',
+    },
+    {
+      title: 'Dashboard',
+      image: dashboaerImg, // replace with actual path
+      link: '/dashboard',
+    },
+  ];
+
+  const handleCardClick = (link) => {
+    navigate(link);
+  };
+
   if (!token) return null;
 
   return (
     <div className="home">
       <div className="home__body">
         <div className="home__body__main">
-          <div className="home__body__main-carasoul">
-            <CarouselPage />
-          </div>
           <div className="home__body__main-text">
             Welcome to <span>Camp Heaven</span>, your go-to resource for
             seamless camping experiences.
@@ -49,6 +81,27 @@ const Home = () => {
             fellow explorers and a wealth of information at your fingertips.
             Join us in creating lasting memories under the open sky, because
             your next great adventure starts here.
+          </div>
+
+          <div className="cardContainer">
+            {cardData.map((card, index) => (
+              <div
+                key={index}
+                className="card"
+                onClick={() => handleCardClick(card.link)}
+              >
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="card__image"
+                />
+                <h2 className="card__title">{card.title}</h2>
+              </div>
+            ))}
+          </div>
+
+          <div className="home__body__main-carasoul">
+            <CarouselPage />
           </div>
         </div>
       </div>

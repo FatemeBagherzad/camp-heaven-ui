@@ -6,12 +6,10 @@
 .singleGear {
   font-family: Avenir;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.2;
   @include desktop {
     font-size: 1.2rem;
-    // line-height: 1.7;
   }
-  // background-color: $color-grey-200;
   padding: 0.2rem 0.5rem;
   border-radius: 5px;
   border-bottom: 1px solid $color-grey-200;

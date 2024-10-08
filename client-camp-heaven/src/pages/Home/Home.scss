@@ -12,22 +12,58 @@
     display: flex;
     &__main {
       margin: 2rem auto;
-      width: 70%;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4rem;
       &-carasoul {
-        width: 60%;
+        width: 100%;
+        max-width: 80rem;
       }
       &-text {
         background-color: #182130;
         font-family: Avenir;
-        font-size: 1.2rem;
-        line-height: 1.7;
+        font-size: 1rem;
+        line-height: 1.2;
         padding: 2rem;
         border-radius: 1rem;
+        border: 3px solid $color-blue-100;
       }
     }
   }
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 20rem;
+  border: 3px solid $color-blue-100;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card__image {
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card__title {
+  font-size: 1rem;
+  margin: 10px 0;
+  color: #333;
+  text-align: center;
 }

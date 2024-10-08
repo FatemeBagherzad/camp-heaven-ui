@@ -20,8 +20,13 @@
       gap: 4rem;
       &-top {
         display: grid;
-        grid-template-columns: 2fr;
-        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr;
+        @include tablet {
+          grid-template-columns: 2fr;
+          grid-template-rows: 1fr;
+        }
+
         gap: 2rem;
         align-items: center;
         @include desktop {

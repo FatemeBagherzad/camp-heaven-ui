@@ -160,34 +160,17 @@ button {
   }
 }
 
-.singleGear {
-  font-family: Avenir;
-  font-size: 1rem;
-  line-height: 1.2;
-  padding: 0.2rem 0.5rem;
-  border-radius: 5px;
-  border-bottom: 1px solid #374151;
+.dashboardTopCamp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  color: #e5e7eb;
+  background-color: #182130;
+  padding: 1rem;
+  border-radius: 1rem;
 }
-@media (min-width: 1280px) {
-  .singleGear {
-    font-size: 1.2rem;
-  }
-}
-.singleGear:hover {
-  background-color: #075985;
-  cursor: pointer;
-  padding-left: 1rem;
-}
-.singleGear.moving {
-  animation: fadeInRight 1s ease-in-out forwards;
-}
-@keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.dashboardTopCamp__img {
+  width: 18rem;
+  height: auto;
+  border-radius: 1rem;
 }

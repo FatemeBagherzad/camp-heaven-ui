@@ -160,34 +160,38 @@ button {
   }
 }
 
-.singleGear {
-  font-family: Avenir;
-  font-size: 1rem;
-  line-height: 1.2;
-  padding: 0.2rem 0.5rem;
-  border-radius: 5px;
-  border-bottom: 1px solid #374151;
+.background {
+  background-color: #111828;
+}
+
+.dashboard__body {
+  max-width: 80rem;
+  margin: auto;
+}
+.dashboard__body--charts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  gap: 4rem;
+}
+.dashboard__body--charts-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .dashboard__body--charts-top {
+    grid-template-columns: 2fr;
+    grid-template-rows: 1fr;
+  }
 }
 @media (min-width: 1280px) {
-  .singleGear {
-    font-size: 1.2rem;
-  }
-}
-.singleGear:hover {
-  background-color: #075985;
-  cursor: pointer;
-  padding-left: 1rem;
-}
-.singleGear.moving {
-  animation: fadeInRight 1s ease-in-out forwards;
-}
-@keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
+  .dashboard__body--charts-top {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
   }
 }
