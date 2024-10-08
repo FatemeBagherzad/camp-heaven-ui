@@ -1,7 +1,5 @@
 import './NewsPage.scss';
 
-import TopNav from '../../components/TopNav/TopNav';
-import LeftNav from '../../components/LeftNav/LeftNav';
 import { useNavigate } from 'react-router-dom';
 import newsImg11 from '../../assets/newsImg/Newsletter11.jpg';
 import newsImg12 from '../../assets/newsImg/Newsletter12.jpg';
@@ -13,6 +11,7 @@ import newsImg17 from '../../assets/newsImg/Newsletter17.jpg';
 import newsImg18 from '../../assets/newsImg/Newsletter18.jpg';
 import newsImg19 from '../../assets/newsImg/Newsletter19.jpg';
 import newsImg20 from '../../assets/newsImg/Newsletter20.jpg';
+import pdf from '../../assets/UploadsPDF/ForNews.pdf';
 import { useAuth } from '../../context/AuthContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -45,7 +44,7 @@ const GearPage = () => {
                 </h2>
                 <span>May 18, 2021</span>
                 <p>BCC makes recommendations on Alberta Climate Policy</p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -59,7 +58,7 @@ const GearPage = () => {
                 </h2>
                 <span>May 17, 2021</span>
                 <p>BCC makes recommendations on Federal Offset Policy</p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -74,7 +73,7 @@ const GearPage = () => {
                   (BCC) provides agriculture commentary on draft regulations
                   under the Greenhouse Gas...
                 </p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -89,7 +88,7 @@ const GearPage = () => {
                   Canada (BCC) was part of an announcement by the Province of
                   Alberta. The Province is...
                 </p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -103,7 +102,7 @@ const GearPage = () => {
                   Presentation given at the Canadian Federation of Agriculture
                   AGM
                 </p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -119,7 +118,7 @@ const GearPage = () => {
                   Departments of Ag & Environment support new and existing
                   Natural Climate Solution.
                 </p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -136,7 +135,7 @@ const GearPage = () => {
                   Departments of Ag & Environment support new and existing
                   Natural Climate Solution.
                 </p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -151,7 +150,7 @@ const GearPage = () => {
                   year! In March our lives and the way we did business changed
                   in the blink of an eye....
                 </p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -166,7 +165,7 @@ const GearPage = () => {
                   United Nations body for assessing the science related to
                   climate change.
                 </p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -181,7 +180,7 @@ const GearPage = () => {
                   things. They aim to reduce greenhouse gas (GHG, or “carbon”)
                   emissions cost-effectively by…
                 </p>
-                <a href="UploadsPDF/For News.pdf" target="_blank">
+                <a href={pdf} target="_blank">
                   Read more
                 </a>
               </div>
@@ -193,173 +192,97 @@ const GearPage = () => {
               <h2>Archive</h2>
               <ul>
                 <li>
-                  <a
-                    href="UploadsPDF/For News.pdf"
-                    target="_blank"
-                    className="AllLinks"
-                  >
+                  <a href={pdf} target="_blank" className="AllLinks">
                     September 2022
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     May 2022
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     March 2022
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     December 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     October 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     September 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     July 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     June 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     May 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     March 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     February 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     January 2021
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     September 2020
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     July 2020
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     December 2019
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     December 2018
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     April 2018
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     January 2018
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="UploadsPDF/For News.pdf"
-                    className="AllLinks"
-                  >
+                  <a target="_blank" href={pdf} className="AllLinks">
                     December 2017
                   </a>
                 </li>

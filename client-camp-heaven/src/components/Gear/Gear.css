@@ -179,7 +179,8 @@ button {
   padding-left: 1rem;
 }
 .singleGear.moving {
-  animation: fadeInRight 1s ease-in-out forwards;
+  animation: fadeInRight 0.5s ease-in-out forwards;
+  animation: fadeOutLeft 0.5s ease-in-out forwards;
 }
 @keyframes fadeInRight {
   0% {
@@ -189,5 +190,15 @@ button {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50px);
   }
 }

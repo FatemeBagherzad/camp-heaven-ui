@@ -180,6 +180,8 @@ button {
 .home__body__main-carasoul {
   width: 100%;
   max-width: 80rem;
+  border-radius: 1rem;
+  border: 3px solid #075985;
 }
 .home__body__main-text {
   background-color: #182130;

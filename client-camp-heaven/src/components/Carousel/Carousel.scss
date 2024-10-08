@@ -2,3 +2,8 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/global' as *;
+
+.carousel img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}

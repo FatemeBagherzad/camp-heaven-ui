@@ -11,7 +11,7 @@ import './Carousel.scss';
 
 const CarouselPage = () => {
   return (
-    <Carousel>
+    <Carousel className="carousel">
       <div>
         <img src={carasoul1} />
         <p className="legend">

@@ -22,13 +22,13 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 2fr;
+        gap: 2rem;
+        align-items: center;
         @include tablet {
           grid-template-columns: 2fr;
           grid-template-rows: 1fr;
         }
 
-        gap: 2rem;
-        align-items: center;
         @include desktop {
           grid-template-columns: 1fr 1fr;
           grid-template-rows: auto;
