@@ -27,11 +27,12 @@ const upload = multer({
 });
 
 //Sets up a middleware to handle single image uploads for a field named 'photo'
+
 const uploadUserPhoto = upload.single('photo');
 
 const resizeUserPhoto = catchAsync(async (req, res, next) => {
+  console.log('😨😨😨resize', req.file);
   if (!req.file) return next();
-
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
 
   await sharp(req.file.buffer)
@@ -67,17 +68,17 @@ const updateMe = catchAsync(async (req, res, next) => {
       )
     );
   }
-  const filteredBody = filterObj(req.body, 'name', 'email');
-  if (req.file) filteredBody.photo = req.file.filename;
 
+  const filteredBody = filterObj(req.body, 'name');
+  if (req.file) filteredBody.photo = req.file.filename;
   const result = await knex('users')
     .where({ id: req.user.id })
     .update(filteredBody);
-
   const updatedUser = await knex('users').where({ id: req.user.id }).first();
   if (!updatedUser) {
     return next(new AppError('User not found', 404));
   }
+  console.log('updatedUser🟨⏫🟨', updatedUser);
   res.status(200).json({
     status: 'success',
     data: {

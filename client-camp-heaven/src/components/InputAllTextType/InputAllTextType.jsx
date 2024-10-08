@@ -27,18 +27,7 @@ const InputAllTextType = ({
         onChange={onChange}
       />
     );
-  } else if (type === 'tel') {
-    input = (
-      <input
-        type={type}
-        name={name}
-        placeholder={label}
-        defaultValue={value}
-        ref={ref}
-        className="inputs inputs__userInfo"
-      />
-    );
-  } else if (type === 'email') {
+  } else if (type === 'tel' || type === 'email' || type === 'password') {
     input = (
       <input
         type={type}
@@ -58,9 +47,10 @@ const InputAllTextType = ({
         defaultValue={value}
         ref={ref}
         className="inputs inputs__description"
+        onChange={onChange}
       />
     );
-  } else if (type === 'smallTxt' || type === 'password') {
+  } else if (type === 'smallTxt') {
     input = (
       <input
         type={type}
@@ -69,11 +59,16 @@ const InputAllTextType = ({
         defaultValue={value}
         ref={ref}
         className="inputs inputs__smallTxt"
+        onChange={onChange}
       />
     );
   } else if (type === 'dropDown') {
     input = (
-      <select name={name} className="inputs inputs__dropdown">
+      <select
+        name={name}
+        className="inputs inputs__dropdown"
+        onChange={onChange}
+      >
         <option hidden>Please select</option>
         {allWarehouses.map((warehouse, index) => (
           <option key={index}>{warehouse.warehouse_name}</option>
@@ -88,6 +83,7 @@ const InputAllTextType = ({
         name={name}
         accept="image/*"
         className="inputs__file"
+        onChange={onChange}
       />
     );
   }

@@ -74,14 +74,6 @@ const LeftNav = () => {
             <li
               className="navLeft__menuList-ul-li"
               onClick={() => {
-                Navigate();
-              }}
-            >
-              Check the weather
-            </li>
-            <li
-              className="navLeft__menuList-ul-li"
-              onClick={() => {
                 Navigate('/news');
               }}
             >

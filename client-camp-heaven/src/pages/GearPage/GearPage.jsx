@@ -12,6 +12,7 @@ const GearPage = () => {
   const navigate = useNavigate();
   const [gearHave, setGearHave] = useState();
   const [gearNotHave, setGearNotHave] = useState();
+  const [movingGear, setMovingGear] = useState(null);
   const loggedInUserId = sessionStorage.userId;
   const { setIsLoggedIn } = useAuth();
 
@@ -41,6 +42,7 @@ const GearPage = () => {
 
   const toggleGearStatus = async (gearId) => {
     try {
+      setMovingGear(gearId);
       const gearResponse = await axios.get(
         `${BASE_URL}:${PORT}/api/v1/gears/${gearId}`,
         { withCredentials: true }
@@ -81,8 +83,13 @@ const GearPage = () => {
           { ...gearData, usersid: JSON.stringify(updatedUsersArray) },
         ]);
       }
+
+      setTimeout(() => {
+        setMovingGear(null);
+      }, 500);
     } catch (err) {
       console.error('Error updating gear status:', err);
+      setMovingGear(null);
     }
   };
 
@@ -113,6 +120,7 @@ const GearPage = () => {
               <GearAll
                 gears={gearNotHave}
                 onGearClick={(gearId) => toggleGearStatus(gearId)}
+                movingGear={movingGear}
               />
             )}
           </div>
@@ -122,6 +130,7 @@ const GearPage = () => {
               <GearAll
                 gears={gearHave}
                 onGearClick={(gearId) => toggleGearStatus(gearId)}
+                movingGear={movingGear}
               />
             )}
           </div>
