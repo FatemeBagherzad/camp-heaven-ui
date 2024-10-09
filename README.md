@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-Check out the live demo of Camp Heaven: [Live Demo on Netlify](https://fateme-camp-heaven.netlify.app)
+Check out the live demo of Camp Heaven: [Live Demo on Netlify](https://camp-heaven.netlify.app)
 
 ## Project Overview
 
