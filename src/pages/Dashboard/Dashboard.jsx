@@ -7,9 +7,8 @@ import ResponsiveChart from '../../components/DashboardResponsiveChart/Dashboard
 import PieChart from '../../components/DashboardPieChart/DashboardPieChart';
 import TopCampOfYear from '../../components/TopCampOfYear/TopCampOfYear';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
-const campsUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const campsUrl = `${BACKEND_URL}/api/v1/camps`;
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);

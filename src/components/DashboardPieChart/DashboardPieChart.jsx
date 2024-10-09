@@ -1,11 +1,4 @@
-import {
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-} from 'recharts';
+import { Cell, Legend, Pie, PieChart, Tooltip } from 'recharts';
 import './DashboardPieChart.scss';
 
 const DashboardPieChart = ({ allCamps }) => {

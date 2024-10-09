@@ -10,6 +10,7 @@ import newPageImg from '../../assets/images/screen-shot/news.jpg';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Home = () => {
   const navigate = useNavigate();
@@ -25,27 +26,27 @@ const Home = () => {
   const cardData = [
     {
       title: 'Select Camp',
-      image: campImg, // replace with actual path
+      image: campImg,
       link: '/find-camp',
     },
     {
       title: 'Gear Page',
-      image: gearPageImg, // replace with actual path
+      image: gearPageImg,
       link: '/gears',
     },
     {
       title: 'News Page',
-      image: newPageImg, // replace with actual path
+      image: newPageImg,
       link: '/news',
     },
     {
       title: 'User Account',
-      image: accountPageImg, // replace with actual path
+      image: accountPageImg,
       link: '/userAccount',
     },
     {
       title: 'Dashboard',
-      image: dashboaerImg, // replace with actual path
+      image: dashboaerImg,
       link: '/dashboard',
     },
   ];
