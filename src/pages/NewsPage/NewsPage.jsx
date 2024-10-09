@@ -14,11 +14,6 @@ import newsImg20 from '../../assets/newsImg/Newsletter20.jpg';
 import pdf from '../../assets/UploadsPDF/ForNews.pdf';
 import { useAuth } from '../../context/AuthContext';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
-
-const gearsUrl = `${BASE_URL}:${PORT}/api/v1/gears`;
-
 const NewsPage = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useAuth();

@@ -5,8 +5,6 @@ import axios from 'axios';
 import GearAll from '../../components/GearAll/GearAll';
 import { useAuth } from '../../context/AuthContext';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const GearPage = () => {

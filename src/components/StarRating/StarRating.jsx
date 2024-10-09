@@ -9,7 +9,6 @@ const StarRating = ({ rating, setRating }) => {
 
   return (
     <div className="rate">
-      {/* Star 5 */}
       <input
         type="radio"
         id="star5"
@@ -22,7 +21,6 @@ const StarRating = ({ rating, setRating }) => {
         5 stars
       </label>
 
-      {/* Star 4 */}
       <input
         type="radio"
         id="star4"
@@ -35,7 +33,6 @@ const StarRating = ({ rating, setRating }) => {
         4 stars
       </label>
 
-      {/* Star 3 */}
       <input
         type="radio"
         id="star3"
@@ -48,7 +45,6 @@ const StarRating = ({ rating, setRating }) => {
         3 stars
       </label>
 
-      {/* Star 2 */}
       <input
         type="radio"
         id="star2"
@@ -61,7 +57,6 @@ const StarRating = ({ rating, setRating }) => {
         2 stars
       </label>
 
-      {/* Star 1 */}
       <input
         type="radio"
         id="star1"

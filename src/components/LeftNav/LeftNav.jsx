@@ -1,8 +1,7 @@
 import './LeftNav.scss';
 import InputAllTextType from '../InputAllTextType/InputAllTextType';
 import logo from '../../assets/images/logo.png';
-import { Link, Navigate } from 'react-router-dom';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import menu from '../../assets/Icons/menu-white.png';
 

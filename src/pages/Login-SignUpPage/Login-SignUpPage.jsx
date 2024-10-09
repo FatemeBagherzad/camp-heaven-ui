@@ -2,16 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login-SignUpPage.scss';
-
 import { useAuth } from '../../context/AuthContext';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import logo from '../../assets/images/logo.png';
-import toast, { Toaster } from 'react-hot-toast';
-import TopNav from '../../components/TopNav/TopNav';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const loginUrl = `${BACKEND_URL}/api/v1/users/login`;
 const signupUrl = `${BACKEND_URL}/api/v1/users/signup`;

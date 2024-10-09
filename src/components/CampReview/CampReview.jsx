@@ -4,8 +4,6 @@ import './CampReview.scss';
 import deleteIcn from '../../assets/Icons/delete_grey.png';
 import editIcn from '../../assets/Icons/edit-grey.png';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {

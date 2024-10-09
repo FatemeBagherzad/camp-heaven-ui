@@ -3,12 +3,9 @@ import axios from 'axios';
 import CampReviewAll from '../CampReviewAll/CampReviewAll';
 import './CampDetail.scss';
 import close from '../../assets/Icons/close-24px.svg';
-import StarRating from '../StarRating/StarRating';
 import CampReviewForm from '../CampReviewForm/CampReviewForm';
 import Button from '../Button/Button';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const campUrl = `${BACKEND_URL}/api/v1/camps`;
 

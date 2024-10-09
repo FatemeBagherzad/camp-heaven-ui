@@ -1,14 +1,10 @@
 import './TopNav.scss';
-
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import user from '../../assets/Icons/user-white.png';
 import logOut from '../../assets/Icons/exit-white.png';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const logoutUrl = `${BACKEND_URL}/api/v1/users/logout`;
 
@@ -20,10 +16,6 @@ const TopNav = () => {
   const loggedInUserId = sessionStorage.getItem('userId');
   const token = sessionStorage.getItem('JWTtoken');
 
-  const anonymosUser = {
-    name: 'user',
-    photo: 'default.jpg',
-  };
   const fetchUserDetails = async (userId) => {
     try {
       const response = await axios.get(

@@ -5,8 +5,6 @@ import InputAllTextType from '../InputAllTextType/InputAllTextType';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Account = () => {
@@ -27,7 +25,6 @@ const Account = () => {
     e.preventDefault();
 
     try {
-      // Update user info
       const formData = new FormData();
       formData.append('name', fullName);
       if (avatar) formData.append('photo', avatar);
@@ -58,7 +55,6 @@ const Account = () => {
     e.preventDefault();
 
     try {
-      // Update password
       const res = await axios.patch(
         `${BACKEND_URL}/api/v1/users/updateMyPassword`,
         {
@@ -138,7 +134,6 @@ const Account = () => {
         </div>
       </form>
 
-      {/* Display the response message */}
       {message && <p>{message}</p>}
     </div>
   );
