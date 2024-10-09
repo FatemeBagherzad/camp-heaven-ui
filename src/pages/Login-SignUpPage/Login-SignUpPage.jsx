@@ -12,8 +12,9 @@ import TopNav from '../../components/TopNav/TopNav';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
-const loginUrl = `${BASE_URL}:${PORT}/api/v1/users/login`;
-const signupUrl = `${BASE_URL}:${PORT}/api/v1/users/signup`;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const loginUrl = `${BACKEND_URL}/api/v1/users/login`;
+const signupUrl = `${BACKEND_URL}/api/v1/users/signup`;
 
 const Home = () => {
   const [showSignedUp, setShowSignedUp] = useState(false);

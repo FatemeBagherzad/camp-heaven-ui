@@ -10,6 +10,7 @@ import newPageImg from '../../assets/images/screen-shot/news.jpg';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Home = () => {
   const navigate = useNavigate();

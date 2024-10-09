@@ -6,6 +6,7 @@ import editIcn from '../../assets/Icons/edit-grey.png';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
   const [user, setUser] = useState(null);
@@ -17,14 +18,14 @@ const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
   const fetchUserDetails = async (userId) => {
     try {
       const response = await axios.get(
-        `${BASE_URL}:${PORT}/api/v1/users/${userId}`,
+        `${BACKEND_URL}/api/v1/users/${userId}`,
         {
           withCredentials: true,
         }
       );
       const userData = response.data.data.data;
       setUser(userData);
-      let reviewImgUser = `${BASE_URL}:${PORT}/img/users/${userData.photo}`;
+      let reviewImgUser = `${BACKEND_URL}/img/users/${userData.photo}`;
       setUserPhoto(reviewImgUser);
     } catch (error) {
       console.error('Failed to fetch user details:', error);

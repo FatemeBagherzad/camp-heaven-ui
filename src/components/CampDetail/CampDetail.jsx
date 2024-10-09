@@ -9,7 +9,8 @@ import Button from '../Button/Button';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
-const campUrl = `${BASE_URL}:${PORT}/api/v1/camps`;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const campUrl = `${BACKEND_URL}/api/v1/camps`;
 
 const CampDetail = ({ camp, handleCloseDetail }) => {
   const [campReview, setCampReview] = useState();
@@ -26,7 +27,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
   const fetchCampReviews = async () => {
     try {
       const response = await axios.get(
-        `${BASE_URL}:${PORT}/api/v1/camps/${camp.id}/reviews`,
+        `${BACKEND_URL}/api/v1/camps/${camp.id}/reviews`,
         {
           withCredentials: true,
         }
@@ -44,7 +45,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`${BASE_URL}:${PORT}/api/v1/reviews/${review.id}`, {
+        await axios.delete(`${BACKEND_URL}/api/v1/reviews/${review.id}`, {
           withCredentials: true,
         });
         fetchCampReviews();
@@ -58,7 +59,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
   const handleEditReview = async (reviewId, updatedContent) => {
     try {
       await axios.patch(
-        `${BASE_URL}:${PORT}/api/v1/reviews/${reviewId}`,
+        `${BACKEND_URL}/api/v1/reviews/${reviewId}`,
         { review: updatedContent },
         {
           withCredentials: true,

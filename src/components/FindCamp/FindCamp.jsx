@@ -12,6 +12,7 @@ import CampDetail from '../CampDetail/CampDetail';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const mapApi = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 

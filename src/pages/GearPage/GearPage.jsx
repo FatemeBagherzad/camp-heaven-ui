@@ -7,6 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const GearPage = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const GearPage = () => {
   const fetchGears = async () => {
     try {
       const response = await axios.get(
-        `${BASE_URL}:${PORT}/api/v1/users/${loggedInUserId}/gears`,
+        `${BACKEND_URL}/api/v1/users/${loggedInUserId}/gears`,
         {
           withCredentials: true,
         }
@@ -44,7 +45,7 @@ const GearPage = () => {
     try {
       setMovingGear(gearId);
       const gearResponse = await axios.get(
-        `${BASE_URL}:${PORT}/api/v1/gears/${gearId}`,
+        `${BACKEND_URL}/api/v1/gears/${gearId}`,
         { withCredentials: true }
       );
       const gearData = gearResponse.data.data.data;
@@ -61,7 +62,7 @@ const GearPage = () => {
       }
 
       const updatedGear = await axios.patch(
-        `${BASE_URL}:${PORT}/api/v1/gears/${gearId}`,
+        `${BACKEND_URL}/api/v1/gears/${gearId}`,
         { usersid: JSON.stringify(updatedUsersArray) },
         { withCredentials: true }
       );

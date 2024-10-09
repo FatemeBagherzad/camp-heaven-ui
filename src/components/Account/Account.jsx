@@ -7,6 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Account = () => {
   const { token } = useAuth();
@@ -42,7 +43,7 @@ const Account = () => {
       }
 
       const res = await axios.patch(
-        `${BASE_URL}:${PORT}/api/v1/users/updateMe`,
+        `${BACKEND_URL}/api/v1/users/updateMe`,
         formData,
         { withCredentials: true }
       );
@@ -59,7 +60,7 @@ const Account = () => {
     try {
       // Update password
       const res = await axios.patch(
-        `${BASE_URL}:${PORT}/api/v1/users/updateMyPassword`,
+        `${BACKEND_URL}/api/v1/users/updateMyPassword`,
         {
           passwordCurrent: password,
           password: password,

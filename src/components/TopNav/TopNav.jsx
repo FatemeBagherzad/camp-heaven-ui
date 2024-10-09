@@ -9,7 +9,8 @@ import logOut from '../../assets/Icons/exit-white.png';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
-const logoutUrl = `${BASE_URL}:${PORT}/api/v1/users/logout`;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const logoutUrl = `${BACKEND_URL}/api/v1/users/logout`;
 
 const TopNav = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -26,14 +27,14 @@ const TopNav = () => {
   const fetchUserDetails = async (userId) => {
     try {
       const response = await axios.get(
-        `${BASE_URL}:${PORT}/api/v1/users/${userId}`,
+        `${BACKEND_URL}/api/v1/users/${userId}`,
         {
           withCredentials: true,
         }
       );
       const userData = response.data.data.data;
       setUserInfo(userData);
-      let imgUser = `${BASE_URL}:${PORT}/img/users/${userData.photo}`;
+      let imgUser = `${BACKEND_URL}/img/users/${userData.photo}`;
       setUserPhoto(imgUser);
     } catch (error) {
       console.error('Failed to fetch user details:', error);
@@ -54,7 +55,7 @@ const TopNav = () => {
       sessionStorage.clear();
       setIsLoggedIn(false);
       setUserInfo(null);
-      let imgUser = `${BASE_URL}:${PORT}/img/users/default.jpg`;
+      let imgUser = `${BACKEND_URL}/img/users/default.jpg`;
       setUserPhoto(imgUser);
       alert('You are logged out!');
       navigate('/');
