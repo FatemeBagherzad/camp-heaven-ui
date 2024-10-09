@@ -1,6 +1,6 @@
-# Camp Heaven ![Camp Heaven](./client-camp-heaven/src/assets/images/logo-for-readme.png)
+## Camp Heaven ![Camp Heaven](src/assets/images/logo-for-readme.png)
 
-# My Capstone project to practice React, MySQL, Node.js
+## My Capstone project to practice React, MySQL, Node.js
 
 ## Live Demo
 
