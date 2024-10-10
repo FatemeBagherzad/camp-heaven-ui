@@ -65,14 +65,16 @@ const TopNav = () => {
         <div className="navTop__right">
           <div className="navTop__right-txt">Welcome {userInfo.name}!</div>
           <div className="navTop__right-icons">
-            <img
-              src={userPhoto}
-              alt="user icon"
-              className="navTop__right-icons-icn"
-              onClick={() => {
-                navigate('/userAccount');
-              }}
-            />
+            {userPhoto && (
+              <img
+                src={userPhoto}
+                alt="user icon"
+                className="navTop__right-icons-icn"
+                onClick={() => {
+                  navigate('/userAccount');
+                }}
+              />
+            )}
             <img
               src={logOut}
               alt="exit icon"
