@@ -18,6 +18,9 @@ const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
       const response = await axios.get(
         `${BACKEND_URL}/api/v1/users/${userId}`,
         {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
           withCredentials: true,
         }
       );

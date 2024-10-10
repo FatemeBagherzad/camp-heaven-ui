@@ -42,7 +42,12 @@ const Account = () => {
       const res = await axios.patch(
         `${BACKEND_URL}/api/v1/users/updateMe`,
         formData,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
+          withCredentials: true,
+        }
       );
       console.log(res);
       setMessage('User info updated successfully!');
