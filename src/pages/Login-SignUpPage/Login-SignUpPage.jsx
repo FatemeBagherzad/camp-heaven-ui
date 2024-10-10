@@ -52,7 +52,12 @@ const Home = () => {
           email: e.target.email.value,
           password: e.target.password.value,
         },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
+          withCredentials: true,
+        }
       )
       .then((response) => {
         let userId = response.data.data.user.id;

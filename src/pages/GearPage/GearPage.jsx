@@ -26,6 +26,9 @@ const GearPage = () => {
       const response = await axios.get(
         `${BACKEND_URL}/api/v1/users/${loggedInUserId}/gears`,
         {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
           withCredentials: true,
         }
       );
@@ -44,7 +47,12 @@ const GearPage = () => {
       setMovingGear(gearId);
       const gearResponse = await axios.get(
         `${BACKEND_URL}/api/v1/gears/${gearId}`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
+          withCredentials: true,
+        }
       );
       const gearData = gearResponse.data.data.data;
       let usersArray = gearData.usersid;
@@ -62,7 +70,12 @@ const GearPage = () => {
       const updatedGear = await axios.patch(
         `${BACKEND_URL}/api/v1/gears/${gearId}`,
         { usersid: JSON.stringify(updatedUsersArray) },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
+          withCredentials: true,
+        }
       );
 
       if (userHasGear) {
