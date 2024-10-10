@@ -8,7 +8,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
   const [user, setUser] = useState(null);
-  const [userPhoto, setUserPhoto] = useState(null);
+
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(review.review);
   const loggedInUserId = sessionStorage.getItem('userId');
@@ -23,8 +23,6 @@ const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
       );
       const userData = response.data.data.data;
       setUser(userData);
-      let reviewImgUser = `${BACKEND_URL}/img/users/${userData.photo}`;
-      setUserPhoto(reviewImgUser);
     } catch (error) {
       console.error('Failed to fetch user details:', error);
     }
@@ -45,7 +43,7 @@ const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
     }
   }, [review.user_id]);
 
-  if (!user && !userPhoto) {
+  if (!user) {
     return <p>Loading ...</p>;
   } else {
     return (
@@ -53,7 +51,7 @@ const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
         <div className="review__id-and-icons">
           <div className="review__imgName">
             <img
-              src={userPhoto || 'default-image-url'}
+              src={user.photo || 'default-image-url'}
               alt="people image"
               className="review__img"
             />
