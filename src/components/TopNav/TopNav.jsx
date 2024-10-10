@@ -26,7 +26,7 @@ const TopNav = () => {
       );
       const userData = response.data.data.data;
       setUserInfo(userData);
-      let imgUser = `${BACKEND_URL}/img/users/${userData.photo}`;
+      let imgUser = `${BACKEND_URL}/public/img/users/${userData.photo}`;
       setUserPhoto(imgUser);
     } catch (error) {
       console.error('Failed to fetch user details:', error);
@@ -47,7 +47,7 @@ const TopNav = () => {
       sessionStorage.clear();
       setIsLoggedIn(false);
       setUserInfo(null);
-      let imgUser = `${BACKEND_URL}/img/users/default.jpg`;
+      let imgUser = `${BACKEND_URL}/public/img/users/default.jpg`;
       setUserPhoto(imgUser);
       alert('You are logged out!');
       navigate('/');
