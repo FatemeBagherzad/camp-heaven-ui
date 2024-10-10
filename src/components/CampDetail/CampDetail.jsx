@@ -27,9 +27,6 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
       const response = await axios.get(
         `${BACKEND_URL}/api/v1/camps/${camp.id}/reviews`,
         {
-          headers: {
-            Authorization: `Bearer ${token}`, // Include the token here
-          },
           withCredentials: true,
         }
       );

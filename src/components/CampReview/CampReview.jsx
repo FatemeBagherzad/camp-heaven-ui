@@ -12,6 +12,7 @@ const CampReview = ({ review, handleDeleteReview, handleEditReview }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(review.review);
   const loggedInUserId = sessionStorage.getItem('userId');
+  const token = sessionStorage.getItem('JWTtoken');
 
   const fetchUserDetails = async (userId) => {
     try {
