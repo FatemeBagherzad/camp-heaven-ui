@@ -53,9 +53,6 @@ const Home = () => {
           password: e.target.password.value,
         },
         {
-          headers: {
-            Authorization: `Bearer ${token}`, // Include the token here
-          },
           withCredentials: true,
         }
       )
