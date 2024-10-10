@@ -8,12 +8,13 @@ import { useAuth } from '../../context/AuthContext';
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Account = () => {
-  const { token } = useAuth();
   const [fullName, setFullName] = useState('');
   const [avatar, setAvatar] = useState(null);
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [message, setMessage] = useState('');
+  const { setUserInfo } = useAuth();
+  const token = sessionStorage.getItem('JWTtoken');
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -50,6 +51,7 @@ const Account = () => {
         }
       );
       console.log(res);
+      setUserInfo(res.data.data.user);
       setMessage('User info updated successfully!');
     } catch (error) {
       setMessage('Error updating user info: ' + error.response.data.message);
