@@ -15,7 +15,6 @@ const TopNav = () => {
   const loggedInUserId = sessionStorage.getItem('userId');
   const token = sessionStorage.getItem('JWTtoken');
 
-  console.log(loggedInUserId);
   const fetchUserDetails = async (userId) => {
     try {
       const response = await axios.get(
@@ -29,7 +28,6 @@ const TopNav = () => {
       );
       const userData = response.data.data.data;
       setUserInfo(userData);
-      console.log(userData);
     } catch (error) {
       console.error('Failed to fetch user details:', error);
     }

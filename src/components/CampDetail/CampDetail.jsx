@@ -27,10 +27,15 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
       const response = await axios.get(
         `${BACKEND_URL}/api/v1/camps/${camp.id}/reviews`,
         {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
+
           withCredentials: true,
         }
       );
       setCampReview(response.data.data.data);
+      console.log('From camp detail page reviews:', response.data.data.data);
       return response.data.data.data;
     } catch (error) {
       console.error('Failed to fetch camp reviews:', error);
