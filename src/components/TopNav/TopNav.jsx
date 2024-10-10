@@ -10,12 +10,12 @@ const logoutUrl = `${BACKEND_URL}/api/v1/users/logout`;
 
 const TopNav = () => {
   const [userInfo, setUserInfo] = useState(null);
-  const [userPhoto, setUserPhoto] = useState(null);
   const navigate = useNavigate();
   const { setIsLoggedIn } = useAuth();
   const loggedInUserId = sessionStorage.getItem('userId');
   const token = sessionStorage.getItem('JWTtoken');
 
+  console.log(loggedInUserId);
   const fetchUserDetails = async (userId) => {
     try {
       const response = await axios.get(
@@ -26,8 +26,7 @@ const TopNav = () => {
       );
       const userData = response.data.data.data;
       setUserInfo(userData);
-      let imgUser = `${BACKEND_URL}/img/users/${userData.photo}`;
-      setUserPhoto(imgUser);
+      console.log(userData);
     } catch (error) {
       console.error('Failed to fetch user details:', error);
     }
@@ -47,8 +46,6 @@ const TopNav = () => {
       sessionStorage.clear();
       setIsLoggedIn(false);
       setUserInfo(null);
-      let imgUser = `${BACKEND_URL}/img/users/default.jpg`;
-      setUserPhoto(imgUser);
       alert('You are logged out!');
       navigate('/');
     } catch (error) {
@@ -65,9 +62,9 @@ const TopNav = () => {
         <div className="navTop__right">
           <div className="navTop__right-txt">Welcome {userInfo.name}!</div>
           <div className="navTop__right-icons">
-            {userPhoto && (
+            {userInfo && (
               <img
-                src={userPhoto}
+                src={userInfo.photo || 'default-image-url'}
                 alt="user icon"
                 className="navTop__right-icons-icn"
                 onClick={() => {
