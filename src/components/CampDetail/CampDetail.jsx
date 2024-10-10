@@ -14,6 +14,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
   const [reviewForm, setReviewForm] = useState(false);
   const [userRating, setUserRating] = useState(0);
   const loggedInUserId = sessionStorage.userId;
+  const token = sessionStorage.getItem('JWTtoken');
 
   const handleCloseForm = () => {
     if (reviewForm) {
@@ -26,6 +27,9 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
       const response = await axios.get(
         `${BACKEND_URL}/api/v1/camps/${camp.id}/reviews`,
         {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
           withCredentials: true,
         }
       );
@@ -43,6 +47,9 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
     if (confirmDelete) {
       try {
         await axios.delete(`${BACKEND_URL}/api/v1/reviews/${review.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
           withCredentials: true,
         });
         fetchCampReviews();
@@ -59,6 +66,9 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
         `${BACKEND_URL}/api/v1/reviews/${reviewId}`,
         { review: updatedContent },
         {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
           withCredentials: true,
         }
       );
@@ -90,6 +100,9 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
         `${campUrl}/${camp.id}/reviews`,
         newReview,
         {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
           withCredentials: true,
         }
       );

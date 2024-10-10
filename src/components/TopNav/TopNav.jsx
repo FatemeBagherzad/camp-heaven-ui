@@ -45,7 +45,12 @@ const TopNav = () => {
 
   const logout = async () => {
     try {
-      await axios.get(logoutUrl, { withCredentials: true });
+      await axios.get(logoutUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Include the token here
+        },
+        withCredentials: true,
+      });
       sessionStorage.clear();
       setIsLoggedIn(false);
       setUserInfo(null);
