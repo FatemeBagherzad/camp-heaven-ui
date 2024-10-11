@@ -157,7 +157,120 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.navLeft {
+  display: none;
+}
+@media (min-width: 768px) {
+  .navLeft {
+    display: block;
+    padding: 0 2rem 0 2rem;
+    width: 15rem;
+    height: 100rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #182130;
+    color: #e5e7eb;
+    gap: 1rem;
+  }
+}
+.navLeft__menu {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+}
+.navLeft__menu:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 5px grey;
+}
+@media (min-width: 768px) {
+  .navLeft__menu {
+    display: none;
+  }
+}
+.navLeft__logo {
+  width: 100px;
+  justify-self: flex-end;
+}
+.navLeft__searchBox {
+  margin-top: 2rem;
+  width: 100%;
+}
+.navLeft__searchBox-search {
+  width: 100%;
+}
+.navLeft__menuList-ul {
+  list-style: none;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.navLeft__menuList-ul-li {
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.navLeft__menuList-ul-li:hover {
+  cursor: pointer;
+  background-color: #111828;
+}
+
+.navLeftforMobile {
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  z-index: 9999;
+  padding: 0 2rem 0 2rem;
+  width: 15rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #182130;
+  color: #e5e7eb;
+  gap: 1rem;
+}
+.navLeftforMobile__menu {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+}
+.navLeftforMobile__menu:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 5px grey;
+}
+@media (min-width: 768px) {
+  .navLeftforMobile__menu {
+    display: none;
+  }
+}
+.navLeftforMobile__logo {
+  width: 100px;
+  justify-self: flex-end;
+}
+.navLeftforMobile__searchBox {
+  margin-top: 2rem;
+  width: 100%;
+}
+.navLeftforMobile__searchBox-search {
+  width: 100%;
+}
+.navLeftforMobile__menuList-ul {
+  list-style: none;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.navLeftforMobile__menuList-ul-li {
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.navLeftforMobile__menuList-ul-li:hover {
+  cursor: pointer;
+  background-color: #111828;
 }

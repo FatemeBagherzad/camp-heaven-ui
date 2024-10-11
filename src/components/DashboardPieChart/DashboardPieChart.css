@@ -157,7 +157,36 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.pie {
+  background-color: #182130;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  color: #e5e7eb;
+  position: relative;
+}
+.pie__header {
+  align-self: flex-start;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+@media (min-width: 768px) {
+  .pieMob {
+    display: none;
+  }
+}
+
+.pieTab {
+  display: none;
+}
+@media (min-width: 768px) {
+  .pieTab {
+    display: block;
+  }
 }

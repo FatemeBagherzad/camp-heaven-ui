@@ -157,7 +157,59 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.review {
+  display: flex;
+  flex-direction: column;
+}
+.review__id-and-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.review__icons {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+.review__icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+.review__imgName {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  margin: 0.6rem 0 0.6rem 0;
+}
+.review__img {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+}
+.review__comment {
+  margin-bottom: 1rem;
+}
+.review__editForm {
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem 0;
+  gap: 0.5rem;
+}
+.review__txtArea {
+  border: 1px dashed grey;
+  padding: 0.5rem;
+  font-family: titillium;
+}
+.review__editForm-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.review__editForm-btn {
+  padding: 0.05rem 0.5rem;
+  background-color: transparent;
+  border: 1px solid #6b7280;
+  color: #6b7280;
+  border-radius: 5px;
 }

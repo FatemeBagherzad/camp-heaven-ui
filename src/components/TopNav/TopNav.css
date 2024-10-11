@@ -157,7 +157,28 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.navTop {
+  background-color: #182130;
+  display: flex;
+  height: 4rem;
+  padding: 1rem 2rem;
+  color: #e5e7eb;
+  justify-content: flex-end;
+  width: 100%;
+}
+.navTop__right {
+  display: flex;
+  gap: 1rem;
+}
+.navTop__right-icons {
+  display: flex;
+  gap: 1rem;
+}
+.navTop__right-icons-icn {
+  width: 20px;
+  height: 20px;
+}
+.navTop__right-icons-icn:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 5px grey;
 }

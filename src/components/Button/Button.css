@@ -157,7 +157,56 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.button {
+  background-color: #075985;
+  color: #f9fafb;
+  border: none;
+  cursor: pointer;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: 100%;
+  box-shadow: 1px 2px #b9b9b9;
+}
+@media (min-width: 768px) {
+  .button {
+    height: 2.375rem;
+    padding: 0 1rem;
+  }
+}
+.button:hover {
+  background-color: #182130;
+  box-shadow: 1px 2px #075985;
+}
+.button:active {
+  transform: translate(2px, 3px);
+  box-shadow: none;
+}
+.button--cancel {
+  background-color: #f9fafb;
+  color: #111827;
+  border: 1px SOLID #1f2937;
+}
+.button--cancel:hover {
+  border-color: #075985;
+  color: #075985;
+  background-color: #f9fafb;
+}
+.button--delete {
+  background-color: #991b1b;
+  color: #f9fafb;
+  border-color: transparent;
+}
+.button--delete:hover {
+  background-color: #1f2937;
+}
+.button--noshow {
+  display: none;
+}
+.button--edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
