@@ -157,7 +157,55 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #f9fafb;
+  border-radius: 1rem;
+  width: 40rem;
+  position: relative;
+}
+.form__closeIcn {
+  width: 20px;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  border: 2px solid rgb(214, 214, 214);
+}
+.form__closeIcn:hover {
+  cursor: pointer;
+}
+.form__form__campName {
+  align-self: center;
+}
+.form__user {
+  display: flex;
+  align-items: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.form__user-img {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+}
+.form__star {
+  margin: auto;
+}
+.form__addPhotoBtn {
+  width: 70%;
+  margin: auto;
+}
+.form__cancelPostBtn-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.form__cancelPostBtn {
+  display: flex;
+  gap: 1rem;
+  width: 50%;
+  justify-content: flex-end;
 }

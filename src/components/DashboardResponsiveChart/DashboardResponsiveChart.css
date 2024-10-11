@@ -157,7 +157,17 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.chart {
+  width: 70%;
+  display: flex;
+  justify-self: flex-start;
+}
+
+.chart__heading {
+  width: 100%;
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  gap: 3rem;
 }

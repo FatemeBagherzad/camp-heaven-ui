@@ -157,7 +157,8 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.gearAll {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

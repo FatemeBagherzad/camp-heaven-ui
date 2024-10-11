@@ -157,7 +157,104 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.login {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../assets/images/home-page-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.login__formWelcome {
+  background-color: rgba(121, 246, 246, 0.755);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 80rem;
+  padding: 2rem 0.5rem;
+  border-radius: 1rem;
+}
+@media (min-width: 768px) {
+  .login__formWelcome {
+    width: 90%;
+    padding: 2rem;
+  }
+}
+@media (min-width: 1280px) {
+  .login__formWelcome {
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+  }
+}
+.login__formWelcome-txt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login__formWelcome-txt-logo {
+  width: 6rem;
+  margin-bottom: 1rem;
+  align-self: center;
+}
+.login__formWelcome-txt-header {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 1280px) {
+  .login__formWelcome-txt-header {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+  }
+}
+.login__formWelcome-txt-p {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .login__formWelcome-txt-p {
+    display: block;
+    font-size: 1rem;
+    line-height: 2;
+  }
+}
+.login__formWelcome-form {
+  margin: 0 auto;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .login__formWelcome-form {
+    width: 70%;
+    max-width: 50rem;
+  }
+  .login__formWelcome-form-links {
+    margin-top: 2rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+  }
+  .login__formWelcome-form-links-loginForgot {
+    display: flex;
+    justify-content: space-between;
+  }
+  .login__formWelcome-form-links-link {
+    text-decoration: underline;
+    font-size: 1rem;
+    color: #3730a3;
+  }
+  .login__formWelcome-form-links-link:hover {
+    cursor: pointer;
+    color: #fef9c3;
+  }
+}
+
+.leftNavDisplay {
+  display: none;
+}
+
+.login__top-nav {
+  display: none;
 }

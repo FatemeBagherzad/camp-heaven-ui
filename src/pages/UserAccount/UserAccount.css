@@ -157,7 +157,17 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.userAccount {
+  background-color: #111828;
+  color: #e5e7eb;
+  width: 100vw;
+  height: 100vh;
+}
+.userAccount__body {
+  display: flex;
+}
+.userAccount__body-main {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
 }

@@ -157,7 +157,113 @@ button {
   }
 }
 
-.carousel img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 2rem;
+  width: 100%;
+  border: 1px solid #6b7280;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+}
+@media (min-width: 768px) {
+  .inputs {
+    height: 2rem;
+  }
+}
+.inputs::-moz-placeholder {
+  color: #6b7280;
+  font-size: 0.8125rem;
+}
+.inputs::placeholder {
+  color: #6b7280;
+  font-size: 0.8125rem;
+}
+.inputs:focus-visible {
+  outline: 1px solid #1f2937;
+}
+.inputs__search {
+  background: url("../../assets/Icons/search-24px.svg") no-repeat right 1rem center;
+  padding-right: 2.5rem;
+  text-transform: none;
+}
+@media (min-width: 768px) {
+  .inputs__search {
+    width: 10rem;
+  }
+}
+.inputs__userInfo {
+  text-transform: none;
+}
+.inputs__description {
+  resize: none;
+  text-transform: none;
+  height: 7.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.inputs__dropDown {
+  border-color: #374151;
+  color: #1f2937;
+  border-radius: 1.25rem;
+  height: 2.25rem;
+  width: 100%;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8125rem;
+}
+@media (min-width: 768px) {
+  .inputs__dropDown {
+    height: 1.875rem;
+  }
+}
+.inputs__dropDown:focus {
+  border-color: #1f2937;
+  color: #d1d5db;
+}
+.inputs__label--labelHeader {
+  height: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+@media (min-width: 768px) {
+  .inputs__label--labelHeader {
+    font-size: 0.875rem;
+  }
+}
+.inputs__label--search {
+  display: none;
+}
+
+input[type=file]::file-selector-button {
+  background-color: #075985;
+  color: #f9fafb;
+  border: none;
+  cursor: pointer;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: -moz-fit-content;
+  width: fit-content;
+  box-shadow: 1px 2px #b9b9b9;
+}
+@media (min-width: 768px) {
+  input[type=file]::file-selector-button {
+    height: 2.375rem;
+    padding: 0 1rem;
+  }
+}
+input[type=file]::file-selector-button:hover {
+  background-color: #182130;
+  box-shadow: 1px 2px #075985;
+}
+input[type=file]::file-selector-button:active {
+  transform: translate(2px, 3px);
+  box-shadow: none;
+}
+
+input[type=file]::label {
+  font-size: 6rem;
 }
