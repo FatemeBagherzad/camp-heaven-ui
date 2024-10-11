@@ -13,7 +13,7 @@ const Account = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [message, setMessage] = useState('');
-  const { setUserInfo } = useAuth();
+
   const token = sessionStorage.getItem('JWTtoken');
 
   const handleFileChange = (e) => {
@@ -24,7 +24,6 @@ const Account = () => {
 
   const handleSubmitUserInfo = async (e) => {
     e.preventDefault();
-
     try {
       const formData = new FormData();
       formData.append('name', fullName);
@@ -39,20 +38,25 @@ const Account = () => {
           console.log(`${pair[0]}: ${pair[1]}`);
         }
       }
-
-      const res = await axios.patch(
-        `${BACKEND_URL}/api/v1/users/updateMe`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Include the token here
-          },
-          withCredentials: true,
-        }
-      );
-      console.log(res);
-      setUserInfo(res.data.data.user);
-      setMessage('User info updated successfully!');
+      if (fullName || avatar) {
+        const res = await axios.patch(
+          `${BACKEND_URL}/api/v1/users/updateMe`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the token here
+            },
+            withCredentials: true,
+          }
+        );
+        console.log(res);
+        setFullName('');
+        setAvatar(null);
+        setMessage('User info updated successfully!');
+      } else {
+        alert('Please fill in user name or avatar');
+      }
+      // setUserInfo(res.data.data.user);
     } catch (error) {
       setMessage('Error updating user info: ' + error.response.data.message);
     }
@@ -60,24 +64,35 @@ const Account = () => {
 
   const handleSubmitPassword = async (e) => {
     e.preventDefault();
-
-    try {
-      const res = await axios.patch(
-        `${BACKEND_URL}/api/v1/users/updateMyPassword`,
-        {
-          passwordCurrent: password,
-          password: password,
-          passwordConfirm: passwordConfirm,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+    if (!password || !passwordConfirm) {
+      alert('both fields must be filled!');
+    }
+    if (password && passwordConfirm && password !== passwordConfirm) {
+      alert('passwords doesnt mathch!');
+    }
+    if (password && passwordConfirm) {
+      try {
+        const res = await axios.patch(
+          `${BACKEND_URL}/api/v1/users/updateMyPassword`,
+          {
+            passwordCurrent: password,
+            password: password,
+            passwordConfirm: passwordConfirm,
           },
-        }
-      );
-      setMessage('Password updated successfully!');
-    } catch (error) {
-      setMessage('Error updating password: ' + error.response.data.message);
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setPassword('');
+        setPasswordConfirm('');
+        setMessage('Password updated successfully!');
+      } catch (error) {
+        setMessage('Error updating password: ' + error.response.data.message);
+      }
+    } else {
+      alert('some unknown error happend! please login again!');
     }
   };
 
