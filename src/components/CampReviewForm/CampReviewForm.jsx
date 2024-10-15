@@ -22,25 +22,25 @@ const CampReviewForm = ({
   }
 
   return (
-    <form className="form" onSubmit={handleSubmitReview}>
+    <form className="form-review" onSubmit={handleSubmitReview}>
       <img
         src={close}
         alt=""
-        className="form__closeIcn"
+        className="form-review__closeIcn"
         onClick={handleCloseForm}
       />
-      <h2 className="form__campName">camp name</h2>
-      <div className="form__user">
-        <img src={userImg} alt="" className="form__user-img" />
-        <p className="form__user-name">{loggedInUserName}</p>
+      <h2 className="form-review__campName">camp name</h2>
+      <div className="form-review__user">
+        <img src={userImg} alt="" className="form-review__user-img" />
+        <p className="form-review__user-name">{loggedInUserName}</p>
       </div>{' '}
       <StarRating rating={userRating} setRating={setUserRating} />
       <InputAllTextType type="description" name="review" show={false} />
-      <div className="form__addPhotoBtn">
+      <div className="form-review__addPhotoBtn">
         <Button type="" btnTxt="Add photos" />
       </div>
-      <div className="form__cancelPostBtn-container">
-        <div className="form__cancelPostBtn">
+      <div className="form-review__cancelPostBtn-container">
+        <div className="form-review__cancelPostBtn">
           <Button type="cancel" btnTxt="Cancel" onClick={handleCloseForm} />{' '}
           <Button type="submit" btnTxt="Post" />
         </div>

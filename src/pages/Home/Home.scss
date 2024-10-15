@@ -18,10 +18,16 @@
       align-items: center;
       gap: 4rem;
       &-carasoul {
-        width: 100%;
-        max-width: 80rem;
+        width: 20rem;
         border-radius: 1rem;
         border: 3px solid $color-blue-100;
+        @include tablet {
+          width: 30rem;
+        }
+        @include desktop {
+          width: 55rem;
+          max-width: 80rem;
+        }
       }
       &-text {
         background-color: #182130;

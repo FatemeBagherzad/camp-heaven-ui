@@ -12,19 +12,22 @@
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTPro.ttf") format(truetype);
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProDemi.ttf") format(truetype);
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProBold.ttf") format(truetype);
   font-weight: 900;
   font-style: normal;
 }
@@ -175,10 +178,20 @@ button {
   gap: 4rem;
 }
 .home__body__main-carasoul {
-  width: 100%;
-  max-width: 80rem;
+  width: 20rem;
   border-radius: 1rem;
   border: 3px solid #075985;
+}
+@media (min-width: 768px) {
+  .home__body__main-carasoul {
+    width: 30rem;
+  }
+}
+@media (min-width: 1280px) {
+  .home__body__main-carasoul {
+    width: 55rem;
+    max-width: 80rem;
+  }
 }
 .home__body__main-text {
   background-color: #182130;

@@ -132,19 +132,11 @@ const LeftNav = () => {
               >
                 Gears
               </li>
+
               <li
                 className="navLeft__menuList-ul-li"
                 onClick={() => {
-                  Navigate();
-                  setLeftNavOpen(false);
-                }}
-              >
-                Check the weather
-              </li>
-              <li
-                className="navLeft__menuList-ul-li"
-                onClick={() => {
-                  Navigate();
+                  Navigate('/news');
                   setLeftNavOpen(false);
                 }}
               >
