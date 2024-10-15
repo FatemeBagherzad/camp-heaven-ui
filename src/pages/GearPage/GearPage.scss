@@ -47,6 +47,35 @@
     }
   }
 
+  &__tabs {
+    display: flex;
+    justify-content: center;
+    // margin-bottom: 1rem;
+    button {
+      font-size: 0.8rem;
+      font-family: Avenir;
+      padding: 0.7rem 2.2rem;
+      border-bottom: 2px solid $color-blue-100;
+      border-radius: 0.5rem;
+      margin: 1rem auto;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      @include tablet {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      @include desktop {
+        font-size: 1.2rem;
+      }
+
+      &.active {
+        background-color: $color-blue-100;
+        color: white;
+      }
+    }
+  }
+
   &__list {
     display: grid;
     grid-template-columns: 1fr;
@@ -69,4 +98,19 @@
       }
     }
   }
+}
+
+.gears__list-all,
+.gears__list-userHave {
+  @include tablet {
+    display: block !important;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.active {
+  display: block;
 }

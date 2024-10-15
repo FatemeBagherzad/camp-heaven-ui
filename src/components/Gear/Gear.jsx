@@ -1,9 +1,11 @@
 import './Gear.scss';
 
-const Gear = ({ gear, onGearClick, isMoving }) => {
+const Gear = ({ gear, onGearClick, isMoving, symbol }) => {
   return (
     <div onClick={() => onGearClick(gear.id)}>
-      <p className={`singleGear ${isMoving ? 'moving' : ''}`}>{gear.name}</p>
+      <p className={`singleGear ${isMoving ? 'moving' : ''}`}>
+        <span className="check">{symbol}</span> {gear.name}
+      </p>
     </div>
   );
 };

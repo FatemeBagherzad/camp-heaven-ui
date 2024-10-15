@@ -210,6 +210,36 @@ button {
     padding: 2rem;
   }
 }
+.gears__tabs {
+  display: flex;
+  justify-content: center;
+}
+.gears__tabs button {
+  font-size: 0.8rem;
+  font-family: Avenir;
+  padding: 0.7rem 2.2rem;
+  border-bottom: 2px solid #075985;
+  border-radius: 0.5rem;
+  margin: 1rem auto;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+@media (min-width: 768px) {
+  .gears__tabs button {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+@media (min-width: 1280px) {
+  .gears__tabs button {
+    font-size: 1.2rem;
+  }
+}
+.gears__tabs button.active {
+  background-color: #075985;
+  color: white;
+}
 .gears__list {
   display: grid;
   grid-template-columns: 1fr;
@@ -235,4 +265,19 @@ button {
   .gears__list-titr {
     font-size: 1.4rem;
   }
+}
+
+@media (min-width: 768px) {
+  .gears__list-all,
+  .gears__list-userHave {
+    display: block !important;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.active {
+  display: block;
 }

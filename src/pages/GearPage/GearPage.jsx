@@ -12,6 +12,7 @@ const GearPage = () => {
   const [gearHave, setGearHave] = useState();
   const [gearNotHave, setGearNotHave] = useState();
   const [movingGear, setMovingGear] = useState(null);
+  const [activeTab, setActiveTab] = useState('notHave');
   const loggedInUserId = sessionStorage.userId;
   const { setIsLoggedIn } = useAuth();
 
@@ -125,7 +126,51 @@ const GearPage = () => {
             item.
           </p>
         </div>
+
+        <div className="gears__tabs">
+          <button
+            className={activeTab === 'notHave' ? 'active' : ''}
+            onClick={() => setActiveTab('notHave')}
+          >
+            Not in your list 📝
+          </button>
+          <button
+            className={activeTab === 'have' ? 'active' : ''}
+            onClick={() => setActiveTab('have')}
+          >
+            You have these! ⏬
+          </button>
+        </div>
+
         <div className="gears__list">
+          <div
+            className={`gears__list-all ${
+              activeTab === 'notHave' ? 'active' : 'hidden'
+            }`}
+          >
+            <GearAll
+              symbol="❌"
+              gears={gearNotHave}
+              onGearClick={(gearId) => toggleGearStatus(gearId)}
+              movingGear={movingGear}
+            />
+          </div>
+
+          <div
+            className={`gears__list-userHave ${
+              activeTab === 'have' ? 'active' : 'hidden'
+            }`}
+          >
+            <GearAll
+              symbol="✔"
+              gears={gearHave}
+              onGearClick={(gearId) => toggleGearStatus(gearId)}
+              movingGear={movingGear}
+            />
+          </div>
+        </div>
+
+        {/* <div className="gears__list">
           <div className="gears__list-all">
             <p className="gears__list-titr">Not in your list yet!! 📝</p>
             {gearNotHave && (
@@ -146,7 +191,7 @@ const GearPage = () => {
               />
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
