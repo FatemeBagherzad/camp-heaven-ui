@@ -9,10 +9,11 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const logoutUrl = `${BACKEND_URL}/api/v1/users/logout`;
 
 const TopNav = () => {
-  const [userInfo, setUserInfo] = useState(null);
+  // const [userInfo, setUserInfo] = useState(null);
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useAuth();
+  const { userInfo, setUserInfo, setIsLoggedIn } = useAuth();
   const loggedInUserId = sessionStorage.getItem('userId');
+  const userPhoto = sessionStorage.getItem('userPhoto');
   const token = sessionStorage.getItem('JWTtoken');
 
   const fetchUserDetails = async (userId) => {
@@ -39,7 +40,7 @@ const TopNav = () => {
     } else if (loggedInUserId) {
       fetchUserDetails(loggedInUserId);
     }
-  }, [loggedInUserId, navigate, token]);
+  }, [loggedInUserId, navigate, token, userPhoto]);
 
   const logout = async () => {
     try {

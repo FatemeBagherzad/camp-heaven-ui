@@ -11,29 +11,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // border-radius: 4px;
   border-radius: 1rem;
+  padding: 1rem;
   color: $color-grey-700;
-  position: relative;
-  // z-index: 999;
   &__header {
     align-self: flex-start;
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
+  }
+  &__layout {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  &__chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
-.pieMob {
-  @include tablet {
-    display: none;
-  }
-}
-.pieTab {
+
+.pie2 {
   display: none;
-  @include tablet {
-    display: block;
-  }
 }
-// .pielegend {
-//   font-size: 0.8rem;
-// }
+.legend1 {
+  display: none;
+}

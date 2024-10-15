@@ -16,8 +16,15 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 4rem;
       gap: 4rem;
+      width: 100%;
+      padding: 1rem;
+      @include tablet {
+        padding: 2rem;
+      }
+      @include tablet {
+        padding: 4rem;
+      }
       &-top {
         display: grid;
         grid-template-columns: 1fr;

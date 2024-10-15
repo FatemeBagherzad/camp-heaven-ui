@@ -12,19 +12,22 @@
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTPro.ttf") format(truetype);
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProDemi.ttf") format(truetype);
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProBold.ttf") format(truetype);
   font-weight: 900;
   font-style: normal;
 }
@@ -171,6 +174,7 @@ button {
   flex-direction: column;
   gap: 0.5rem;
   color: #182130;
+  background-color: #f9fafb;
   padding: 1rem;
   border-radius: 1rem;
   margin-bottom: 2rem;

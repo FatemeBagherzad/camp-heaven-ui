@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import CampReviewAll from '../CampReviewAll/CampReviewAll';
 import './CampDetail.scss';
@@ -13,6 +13,7 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
   const [campReview, setCampReview] = useState();
   const [reviewForm, setReviewForm] = useState(false);
   const [userRating, setUserRating] = useState(0);
+  const detailRef = useRef(null);
   const loggedInUserId = sessionStorage.userId;
   const token = sessionStorage.getItem('JWTtoken');
 
@@ -125,8 +126,21 @@ const CampDetail = ({ camp, handleCloseDetail }) => {
     fetchCampReviews();
   }, [camp.id]);
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (detailRef.current && !detailRef.current.contains(event.target)) {
+        handleCloseDetail(); // Close form if click is outside
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [handleCloseDetail]);
+
   return (
-    <div>
+    <div ref={detailRef}>
       <div className="campDetail">
         <img
           src={close}

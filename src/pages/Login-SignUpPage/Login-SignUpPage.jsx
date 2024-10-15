@@ -61,6 +61,8 @@ const Home = () => {
         sessionStorage.setItem('JWTtoken', response.data.token);
         sessionStorage.setItem('userId', userId);
         sessionStorage.setItem('userName', response.data.data.user.name);
+        sessionStorage.setItem('userPhoto', response.data.data.user.photo);
+
         setIsLoggedIn(true);
         setIsLoginError(false);
         setErrorMessage('');

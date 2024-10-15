@@ -17,3 +17,14 @@
   justify-self: flex-start;
   gap: 3rem;
 }
+.chart-tablet {
+  display: none;
+  @include tablet {
+    display: block;
+  }
+}
+.chart-mobile {
+  @include tablet {
+    display: none;
+  }
+}

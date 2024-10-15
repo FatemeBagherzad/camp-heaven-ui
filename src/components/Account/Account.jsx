@@ -13,6 +13,7 @@ const Account = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [message, setMessage] = useState('');
+  const { userInfo, setUserInfo } = useAuth();
 
   const token = sessionStorage.getItem('JWTtoken');
 
@@ -49,9 +50,13 @@ const Account = () => {
             withCredentials: true,
           }
         );
-        console.log(res);
+        console.log(res.data.data.user);
+        const updatedUser = res.data.data.user;
+        sessionStorage.setItem('userName', JSON.stringify(updatedUser.name));
+        sessionStorage.setItem('userPhoto', JSON.stringify(updatedUser.photo));
         setFullName('');
         setAvatar(null);
+        setUserInfo(res.data.data.user);
         setMessage('User info updated successfully!');
       } else {
         alert('Please fill in user name or avatar');

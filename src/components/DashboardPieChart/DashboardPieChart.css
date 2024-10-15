@@ -12,19 +12,22 @@
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTPro.ttf") format(truetype);
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProDemi.ttf") format(truetype);
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProBold.ttf") format(truetype);
   font-weight: 900;
   font-style: normal;
 }
@@ -166,27 +169,33 @@ button {
   align-items: center;
   justify-content: center;
   border-radius: 1rem;
+  padding: 1rem;
   color: #e5e7eb;
-  position: relative;
 }
 .pie__header {
   align-self: flex-start;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
 }
-
+.pie__layout {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
 @media (min-width: 768px) {
-  .pieMob {
-    display: none;
+  .pie__layout {
+    flex-direction: row;
+    align-items: center;
   }
 }
+.pie__chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.pieTab {
+.pie2 {
   display: none;
 }
-@media (min-width: 768px) {
-  .pieTab {
-    display: block;
-  }
+
+.legend1 {
+  display: none;
 }
