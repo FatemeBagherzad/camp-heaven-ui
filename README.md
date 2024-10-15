@@ -12,10 +12,9 @@ Check out the live demo of Camp Heaven: [Live Demo on Netlify](https://camp-heav
 
 ## Animated Demo
 
-![App Demo](gif/camp1heaven-1-gif.gif)
-![App Demo](gif/camp1heaven-2-gif.gif)
-![App Demo](gif/camp1heaven-3-gif.gif)
-![App Demo](gif/camp1heaven-4-gif.gif)
+![App Demo](gif/campheaven-1.gif)
+![App Demo](gif/campheaven-2.gif)
+![App Demo](gif/campheaven-3.gif)
 
 ## Features
 
