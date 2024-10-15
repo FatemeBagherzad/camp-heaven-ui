@@ -3,15 +3,19 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/global' as *;
 
-.form {
+.form-review {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 2rem;
+  gap: 1rem;
+  padding: 1rem;
   background-color: $color-grey-900;
   border-radius: 1rem;
-  width: 40rem;
   position: relative;
+  width: 95vw;
+  @include tablet {
+    width: 40rem;
+    padding: 2rem;
+  }
   &__closeIcn {
     width: 20px;
     position: absolute;
@@ -49,15 +53,16 @@
     margin: auto;
   }
   &__cancelPostBtn-container {
-    margin-top: 2rem;
+    // margin-top: 2rem;
+
     display: flex;
     justify-content: flex-end;
   }
   &__cancelPostBtn {
+    width: 100%;
     display: flex;
     gap: 1rem;
-    width: 50%;
-
+    // width: 50%;
     justify-content: flex-end;
   }
 }

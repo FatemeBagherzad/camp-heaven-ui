@@ -12,19 +12,22 @@
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTPro.ttf") format(truetype);
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProDemi.ttf") format(truetype);
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProBold.ttf") format(truetype);
   font-weight: 900;
   font-style: normal;
 }
@@ -171,7 +174,12 @@ button {
   flex-direction: column;
   color: #e5e7eb;
   gap: 2rem;
-  padding: 1rem 1rem 2rem 1rem;
+  padding: 1rem 0.5rem 2rem 0.5rem;
+}
+@media (min-width: 768px) {
+  .gears {
+    padding: 1rem 1rem 2rem 1rem;
+  }
 }
 @media (min-width: 1280px) {
   .gears {
@@ -193,9 +201,14 @@ button {
   font-family: Avenir;
   font-size: 1rem;
   line-height: 1.2;
-  padding: 2rem;
+  padding: 1.5rem 1rem;
   border-radius: 1rem;
   border: 3px solid #075985;
+}
+@media (min-width: 768px) {
+  .gears__intro-p {
+    padding: 2rem;
+  }
 }
 .gears__list {
   display: grid;

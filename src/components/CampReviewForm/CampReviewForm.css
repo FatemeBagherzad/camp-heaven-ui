@@ -12,19 +12,22 @@
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTPro.ttf") format(truetype);
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProDemi.ttf") format(truetype);
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProBold.ttf") format(truetype);
   font-weight: 900;
   font-style: normal;
 }
@@ -157,55 +160,60 @@ button {
   }
 }
 
-.form {
+.form-review {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 2rem;
+  gap: 1rem;
+  padding: 1rem;
   background-color: #f9fafb;
   border-radius: 1rem;
-  width: 40rem;
   position: relative;
+  width: 95vw;
 }
-.form__closeIcn {
+@media (min-width: 768px) {
+  .form-review {
+    width: 40rem;
+    padding: 2rem;
+  }
+}
+.form-review__closeIcn {
   width: 20px;
   position: absolute;
   right: 1rem;
   top: 1rem;
   border: 2px solid rgb(214, 214, 214);
 }
-.form__closeIcn:hover {
+.form-review__closeIcn:hover {
   cursor: pointer;
 }
-.form__form__campName {
+.form-review__form__campName {
   align-self: center;
 }
-.form__user {
+.form-review__user {
   display: flex;
   align-items: center;
   align-items: center;
   gap: 0.5rem;
 }
-.form__user-img {
+.form-review__user-img {
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
 }
-.form__star {
+.form-review__star {
   margin: auto;
 }
-.form__addPhotoBtn {
+.form-review__addPhotoBtn {
   width: 70%;
   margin: auto;
 }
-.form__cancelPostBtn-container {
-  margin-top: 2rem;
+.form-review__cancelPostBtn-container {
   display: flex;
   justify-content: flex-end;
 }
-.form__cancelPostBtn {
+.form-review__cancelPostBtn {
+  width: 100%;
   display: flex;
   gap: 1rem;
-  width: 50%;
   justify-content: flex-end;
 }

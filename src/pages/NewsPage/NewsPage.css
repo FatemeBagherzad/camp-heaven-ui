@@ -12,19 +12,22 @@
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Regular.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTPro.ttf") format(truetype);
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Demi.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProDemi.ttf") format(truetype);
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/AvenirNextLTPro-Bold.otf") format(OpenType);
+  src: url("/src/assets/Fonts/Alternative/AvenirNextLTProBold.ttf") format(truetype);
   font-weight: 900;
   font-style: normal;
 }
@@ -175,14 +178,22 @@ a {
 
 .NewsMain {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 3fr 1fr;
   grid-template-rows: auto;
-  padding: 3rem;
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
+  padding: 2rem 1rem;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
   justify-items: center;
   justify-content: space-evenly;
   margin: auto;
+}
+@media (min-width: 768px) {
+  .NewsMain {
+    grid-template-columns: 4fr 1fr;
+    padding: 3rem;
+    -moz-column-gap: 1rem;
+         column-gap: 1rem;
+  }
 }
 
 .Newsfigures {
@@ -191,11 +202,6 @@ a {
   grid-template-rows: auto;
   gap: 1rem;
   margin-bottom: 6rem;
-}
-@media (min-width: 768px) {
-  .Newsfigures {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 @media (min-width: 1280px) {
   .Newsfigures {
@@ -237,7 +243,7 @@ a {
 }
 @media (min-width: 1280px) {
   .Newsfigure {
-    width: 20rem;
+    width: 18rem;
   }
 }
 
