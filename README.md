@@ -2,10 +2,6 @@
 
 ## My Capstone project to practice React, MySQL, Node.js
 
-## Live Demo
-
-Check out the live demo of Camp Heaven: [Live Demo on Netlify](https://camp-heaven.netlify.app)
-
 ## Project Overview
 
 **Camp Heaven** is a web application designed to enhance the camping experience for users by providing essential tools for camp selection, gear management, and more. The platform allows users to explore various camps, track their camping gear, stay informed with the latest news, and manage their own personalized camping dashboard.
