@@ -1,7 +1,5 @@
 ## Camp Heaven ![Camp Heaven](src/assets/images/logo-for-readme.png)
 
-## My Capstone project to practice React, MySQL, Node.js
-
 ## Project Overview
 
 **Camp Heaven** is a web application designed to enhance the camping experience for users by providing essential tools for camp selection, gear management, and more. The platform allows users to explore various camps, track their camping gear, stay informed with the latest news, and manage their own personalized camping dashboard.
@@ -19,23 +17,51 @@
 - **Camping News:** Stay updated with the latest news and trends in the camping and outdoor world.
 - **User Profile & Dashboard:** Manage your user account and view a summary of your camping plans.
 
-## Technologies Used
+## Tech Stack 🛠️
 
-### Frontend
+### Front-end
 
-- **React**: User interface components and state management.
-- **React Router**: Navigation between pages.
-- **Sass**: For styling and responsive design.
-- **Recharts**: Visual charts for dashboard metrics.
-- **Axios**: API requests.
+- React
+- JavaScript (ES6+)
+- SCSS (Sass)
+- React Router DOM
+- Axios
+- React Helmet
+- React Hot Toast
+- React Responsive Carousel
+- Recharts
+- @react-google-maps/api & @googlemaps/react-wrapper
+- Vite (build tool & dev server)
+- ESLint & ESLint plugins
+- Git
 
-### Backend
+### Back-end
 
-- **Node.js & Express**: RESTful API services.
-- **MySQL**: Database for storing user, camp, and gear information.
-- **Knex.js**: SQL query builder for database interactions.
-- **Passport**: Authentication and user management.
-- **Stripe**: Payment processing.
+- Node.js & Express
+- MySQL2
+- Knex (SQL query builder & migrations)
+- Axios
+- dotenv
+- Multer (file uploads)
+- Morgan (logging)
+- Nodemailer (emails)
+- Stripe (payments)
+- bcryptjs (password hashing)
+- jsonwebtoken (JWT auth)
+- Passport & passport-github2 (OAuth)
+- Sharp (image processing)
+- Pug & EJS (templating engines)
+- Helmet & HPP (security)
+- Compression & CORS
+- uniqid
+- validator
+- xss-clean
+- Nodemon & NDB (development tooling)
+- Git
+
+### Collaboration & Tools
+
+- GitHub for version control
 
 ## Screenshots
 
